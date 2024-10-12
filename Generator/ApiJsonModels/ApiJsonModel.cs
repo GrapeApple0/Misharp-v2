@@ -1,12 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Generator.ApiJsonModels
+﻿namespace Generator.ApiJsonModels
 {
     public class ApiJsonModel
     {
+        public class InfoObject
+        {
+            public string Version { get; set; }
+            public string Title { get; set; }
+        }
+        public InfoObject Info { get; set; }
+
+        public ComponentsObject Components { get; set; }
     }
 }

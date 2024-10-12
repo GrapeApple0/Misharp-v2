@@ -2,6 +2,7 @@
 using System.Text.Json;
 using System.Text.Unicode;
 using System.Text;
+using Generator.ApiJsonModels;
 
 namespace Generator
 {
