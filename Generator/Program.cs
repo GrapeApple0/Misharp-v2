@@ -1,8 +1,8 @@
-﻿using System.Text.Encodings.Web;
+﻿using Generator.ApiJsonModels;
+using System.Text;
+using System.Text.Encodings.Web;
 using System.Text.Json;
 using System.Text.Unicode;
-using System.Text;
-using Generator.ApiJsonModels;
 
 namespace Generator
 {
@@ -18,11 +18,17 @@ namespace Generator
                 Encoder = JavaScriptEncoder.Create(UnicodeRanges.All),
                 PropertyNameCaseInsensitive = true
             };
-            var jsonNode = JsonSerializer.Deserialize<ApiJsonModel>(new StringBuilder(raw).Replace("$ref", "ref").Replace("\u001a", "").ToString(), options);
+            var sb = new StringBuilder(raw).Replace("$ref", "ref").Replace("#/components/schemas/", "").Replace("\u001a", "");
+            var jsonNode = JsonSerializer.Deserialize<ApiJsonModel>(sb.ToString(), options);
             if (jsonNode == null) return;
             Console.WriteLine($"Api.json's Misskey Version: {jsonNode.Info.Version}");
-            Console.WriteLine("Generating Models...");
-            Generators.Models.Generate(jsonNode.Components);
+            // Models
+            //Console.WriteLine("Generating Models...");
+            //Generators.Models.Generate(jsonNode.Components);
+            //Console.WriteLine("Done!");
+            //Controls(Paths)
+            Console.WriteLine("Generating Controls...");
+            Generators.Controls.Generate(jsonNode.Paths);
         }
     }
 }

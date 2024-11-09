@@ -4,6 +4,17 @@
     <TargetFramework>net6.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
+    <Platforms>AnyCPU;x64</Platforms>
+    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+    <PackageProjectUrl>https://github.com/GrapeApple0/Misharp</PackageProjectUrl>
+    <AssemblyVersion>2024.10.1.2</AssemblyVersion>
+    <FileVersion>2024.10.1.2</FileVersion>
+    <Version>2024.10.1.2</Version>
+    <Description>Yet Another Misskey Library</Description>
   </PropertyGroup>
+
+  <ItemGroup>
+    <Folder Include="Controls\" />
+  </ItemGroup>
 
 </Project>

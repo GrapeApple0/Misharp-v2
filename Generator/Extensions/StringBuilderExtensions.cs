@@ -15,5 +15,11 @@ namespace Generator.Extensions
             sb.Append(new string('\t', indent));
             sb.Append(value);
         }
+
+        public static void AppendWithIndent(this StringBuilder sb, char value, int indent)
+        {
+            sb.Append(new string('\t', indent));
+            sb.Append(value);
+        }
     }
 }
