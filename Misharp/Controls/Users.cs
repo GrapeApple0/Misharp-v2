@@ -1,7 +1,7 @@
 using Misharp.Models;
 using System.Text.Json;
-using System.Runtime.Serialization;
 using System.Text.Json.Nodes;
+using System.Runtime.Serialization;
 namespace Misharp.Controls
 {
 	public class UsersApi
@@ -259,13 +259,13 @@ namespace Misharp.Controls
 			return result;
 		}
 
-		public async Task<Response<JsonNode>> Relation(JsonNode userId)
+		public async Task<Response<object>> Relation(JsonNode userId)
 		{
 			var param = new Dictionary<string, object?>
 			{
 				{ "userId", userId },
 			};
-			var result = await _app.Request<JsonNode>(
+			var result = await _app.Request<object>(
 				"users/relation", 
 				param, 
 				needToken: true
@@ -332,7 +332,7 @@ namespace Misharp.Controls
 			[EnumMember(Value = "combined")]
 			Combined,
 		}
-		public async Task<Response<JsonNode>> Show(string userId,string username,List<string>? userIds = null,string? host = null)
+		public async Task<Response<UserDetailedModel>> Show(string userId,string username,List<string>? userIds = null,string? host = null)
 		{
 			var param = new Dictionary<string, object?>
 			{
@@ -341,7 +341,7 @@ namespace Misharp.Controls
 				{ "username", username },
 				{ "host", host },
 			};
-			var result = await _app.Request<JsonNode>(
+			var result = await _app.Request<UserDetailedModel>(
 				"users/show", 
 				param, 
 				needToken: false

@@ -688,7 +688,7 @@ namespace Misharp.Controls
 			public bool CarefulBot { get; set; }
 			public bool InjectFeaturedNote { get; set; }
 			public bool ReceiveAnnouncementEmail { get; set; }
-			public List<List<string>> MutedWords { get; set; }
+			public List<JsonNode> MutedWords { get; set; }
 			public List<string> MutedInstances { get; set; }
 			public AdminShowUserNotificationRecieveConfigModel NotificationRecieveConfig { get; set; }
 			public bool IsModerator { get; set; }
@@ -715,7 +715,7 @@ namespace Misharp.Controls
 			public bool CarefulBot { get; set; }
 			public bool InjectFeaturedNote { get; set; }
 			public bool ReceiveAnnouncementEmail { get; set; }
-			public List<List<string>> MutedWords { get; set; }
+			public List<JsonNode> MutedWords { get; set; }
 			public List<string> MutedInstances { get; set; }
 			public AdminShowUserNotificationRecieveConfigModel NotificationRecieveConfig { get; set; }
 			public bool IsModerator { get; set; }
@@ -1473,7 +1473,7 @@ namespace Misharp.Controls.Admin
 		{
 			this._app = app;
 		}
-		public async Task<Response<EmptyResponse>> Create(string name,string description,string url,List<string>? roleIdsThatCanBeUsedThisDecoration = null)
+		public async Task<Response<AdminCreateModel>> Create(string name,string description,string url,List<string>? roleIdsThatCanBeUsedThisDecoration = null)
 		{
 			var param = new Dictionary<string, object?>
 			{
@@ -1482,15 +1482,34 @@ namespace Misharp.Controls.Admin
 				{ "url", url },
 				{ "roleIdsThatCanBeUsedThisDecoration", roleIdsThatCanBeUsedThisDecoration },
 			};
-			var result = await _app.Request<EmptyResponse>(
+			var result = await _app.Request<AdminCreateModel>(
 				"admin/avatar-decorations/create", 
 				param, 
-				successStatusCode: System.Net.HttpStatusCode.NoContent, 
 				needToken: true
 			);
 			return result;
 		}
 
+		public interface IAdminCreateModel
+		{
+			public string Id { get; set; }
+			public DateTime? CreatedAt { get; set; }
+			public DateTime? UpdatedAt { get; set; }
+			public string Name { get; set; }
+			public string Description { get; set; }
+			public string Url { get; set; }
+			public List<string> RoleIdsThatCanBeUsedThisDecoration { get; set; }
+		}
+		public class AdminCreateModel: IAdminCreateModel
+		{
+			public string Id { get; set; }
+			public DateTime? CreatedAt { get; set; }
+			public DateTime? UpdatedAt { get; set; }
+			public string Name { get; set; }
+			public string Description { get; set; }
+			public string Url { get; set; }
+			public List<string> RoleIdsThatCanBeUsedThisDecoration { get; set; }
+		}
 		public async Task<Response<EmptyResponse>> Delete(string id)
 		{
 			var param = new Dictionary<string, object?>
@@ -2321,7 +2340,7 @@ namespace Misharp.Controls.Admin
 		{
 			this._app = app;
 		}
-		public async Task<Response<RoleModel>> Create(string name,string description,AdminRolesCreatePropertiesTargetEnum target, JsonNode condFormula, bool isPublic,bool isModerator,bool isAdministrator,bool asBadge,bool canEditMembersByModerator,decimal displayOrder, JsonNode policies,string? color = null,string? iconUrl = null,bool isExplorable = false)
+		public async Task<Response<RoleModel>> Create(string name,string description,AdminRolesCreatePropertiesTargetEnum target, JsonNode condFormula,bool isPublic,bool isModerator,bool isAdministrator,bool asBadge,bool canEditMembersByModerator,decimal displayOrder, JsonNode policies,string? color = null,string? iconUrl = null,bool isExplorable = false)
 		{
 			var param = new Dictionary<string, object?>
 			{

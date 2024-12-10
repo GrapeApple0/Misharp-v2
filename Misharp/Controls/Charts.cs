@@ -1,5 +1,6 @@
 using Misharp.Models;
 using System.Text.Json;
+using System.Text.Json.Nodes;
 using System.Runtime.Serialization;
 namespace Misharp.Controls
 {
@@ -140,7 +141,6 @@ namespace Misharp.Controls
 			);
 			return result;
 		}
-
 		public interface IChartsApRequestModel
 		{
 			public List<decimal> DeliverFailed { get; set; }
@@ -228,7 +228,6 @@ namespace Misharp.Controls
 			);
 			return result;
 		}
-
 		public interface IChartsDriveLocalModel
 		{
 			public List<decimal> IncCount { get; set; }
@@ -326,7 +325,6 @@ namespace Misharp.Controls
 			);
 			return result;
 		}
-
 		public interface IChartsFederationModel
 		{
 			public List<decimal> DeliveredInstances { get; set; }
@@ -957,6 +955,7 @@ namespace Misharp.Controls.Charts
 			);
 			return result;
 		}
+
 		public interface IChartsDriveModel
 		{
 			public List<decimal> TotalCount { get; set; }
@@ -1092,6 +1091,7 @@ namespace Misharp.Controls.Charts
 			);
 			return result;
 		}
+
 		public interface IChartsFollowingLocalFollowingsModel
 		{
 			public List<decimal> Total { get; set; }
@@ -1237,6 +1237,7 @@ namespace Misharp.Controls.Charts
 			);
 			return result;
 		}
+
 		public interface IChartsNotesDiffsModel
 		{
 			public List<decimal> Normal { get; set; }
@@ -1334,6 +1335,7 @@ namespace Misharp.Controls.Charts
 			);
 			return result;
 		}
+
 		public interface IChartsPvUpvModel
 		{
 			public List<decimal> User { get; set; }

@@ -1,5 +1,6 @@
 using Misharp.Models;
 using System.Text.Json;
+using System.Text.Json.Nodes;
 using System.Runtime.Serialization;
 namespace Misharp.Controls
 {
@@ -162,6 +163,34 @@ namespace Misharp.Controls.Following
 			public UserLiteModel Followee { get; set; }
 		}
 		public class FollowingListItemsModel: IFollowingListItemsModel
+		{
+			public string Id { get; set; }
+			public UserLiteModel Follower { get; set; }
+			public UserLiteModel Followee { get; set; }
+		}
+		public async Task<Response<List<FollowingSentItemsModel>>> Sent(string? sinceId = null,string? untilId = null,int limit = 10)
+		{
+			var param = new Dictionary<string, object?>
+			{
+				{ "sinceId", sinceId },
+				{ "untilId", untilId },
+				{ "limit", limit },
+			};
+			var result = await _app.Request<List<FollowingSentItemsModel>>(
+				"following/requests/sent", 
+				param, 
+				needToken: true
+			);
+			return result;
+		}
+
+		public interface IFollowingSentItemsModel
+		{
+			public string Id { get; set; }
+			public UserLiteModel Follower { get; set; }
+			public UserLiteModel Followee { get; set; }
+		}
+		public class FollowingSentItemsModel: IFollowingSentItemsModel
 		{
 			public string Id { get; set; }
 			public UserLiteModel Follower { get; set; }

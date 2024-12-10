@@ -1,7 +1,7 @@
 using Misharp.Models;
 using System.Text.Json;
-using System.Runtime.Serialization;
 using System.Text.Json.Nodes;
+using System.Runtime.Serialization;
 namespace Misharp.Controls
 {
 	public class PagesApi
@@ -106,7 +106,7 @@ namespace Misharp.Controls
 			return result;
 		}
 
-		public async Task<Response<EmptyResponse>> Update(string pageId,string title,string name,string script,PagesUpdatePropertiesFontEnum font,bool alignCenter,bool hideTitleWhenPinned,string? summary = null,JsonNode? content = null, JsonNode? variables = null,string? eyeCatchingImageId = null)
+		public async Task<Response<EmptyResponse>> Update(string pageId,string title,string name,string script,PagesUpdatePropertiesFontEnum font,bool alignCenter,bool hideTitleWhenPinned,string? summary = null,JsonNode? content = null,JsonNode? variables = null,string? eyeCatchingImageId = null)
 		{
 			var param = new Dictionary<string, object?>
 			{

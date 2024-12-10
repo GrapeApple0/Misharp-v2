@@ -1,7 +1,7 @@
 using Misharp.Models;
 using System.Text.Json;
-using System.Runtime.Serialization;
 using System.Text.Json.Nodes;
+using System.Runtime.Serialization;
 namespace Misharp.Controls
 {
 	public class IApi
@@ -674,7 +674,7 @@ namespace Misharp.Controls
 			return result;
 		}
 
-		public async Task<Response<MeDetailedModel>> Update(bool isLocked,bool isExplorable,bool hideOnlineStatus,bool publicReactions,bool carefulBot,bool autoAcceptFollowed,bool noCrawle,bool preventAiLearning,bool isBot,bool isCat,bool injectFeaturedNote,bool receiveAnnouncementEmail,bool alwaysMarkNsfw,bool autoSensitive,IUpdatePropertiesFollowingVisibilityEnum followingVisibility,IUpdatePropertiesFollowersVisibilityEnum followersVisibility,IUpdatePropertiesNotificationRecieveConfigModel notificationRecieveConfig,string? name = null,string? description = null,string? followedMessage = null,string? location = null,string? birthday = null,IUpdatePropertiesLangEnum? lang = null,string? avatarId = null,List<IUpdatePropertiesAvatarDecorationsItemsModel>? avatarDecorations = null,string? bannerId = null,List<IUpdatePropertiesFieldsItemsModel>? fields = null,string? pinnedPageId = null,List<List<string>>? mutedWords = null, List<List<string>>? hardMutedWords = null,List<string>? mutedInstances = null,List<string>? emailNotificationTypes = null,List<string>? alsoKnownAs = null)
+		public async Task<Response<MeDetailedModel>> Update(bool isLocked,bool isExplorable,bool hideOnlineStatus,bool publicReactions,bool carefulBot,bool autoAcceptFollowed,bool noCrawle,bool preventAiLearning,bool requireSigninToViewContents,bool isBot,bool isCat,bool injectFeaturedNote,bool receiveAnnouncementEmail,bool alwaysMarkNsfw,bool autoSensitive,IUpdatePropertiesFollowingVisibilityEnum followingVisibility,IUpdatePropertiesFollowersVisibilityEnum followersVisibility,IUpdatePropertiesNotificationRecieveConfigModel notificationRecieveConfig,string? name = null,string? description = null,string? followedMessage = null,string? location = null,string? birthday = null,IUpdatePropertiesLangEnum? lang = null,string? avatarId = null,List<IUpdatePropertiesAvatarDecorationsItemsModel>? avatarDecorations = null,string? bannerId = null,List<IUpdatePropertiesFieldsItemsModel>? fields = null,int? makeNotesFollowersOnlyBefore = null,int? makeNotesHiddenBefore = null,string? pinnedPageId = null,List<List<string>>? mutedWords = null, List<List<string>>? hardMutedWords = null,List<string>? mutedInstances = null,List<string>? emailNotificationTypes = null,List<string>? alsoKnownAs = null)
 		{
 			var param = new Dictionary<string, object?>
 			{
@@ -696,6 +696,9 @@ namespace Misharp.Controls
 				{ "autoAcceptFollowed", autoAcceptFollowed },
 				{ "noCrawle", noCrawle },
 				{ "preventAiLearning", preventAiLearning },
+				{ "requireSigninToViewContents", requireSigninToViewContents },
+				{ "makeNotesFollowersOnlyBefore", makeNotesFollowersOnlyBefore },
+				{ "makeNotesHiddenBefore", makeNotesHiddenBefore },
 				{ "isBot", isBot },
 				{ "isCat", isCat },
 				{ "injectFeaturedNote", injectFeaturedNote },

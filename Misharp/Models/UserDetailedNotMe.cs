@@ -22,6 +22,9 @@ namespace Misharp.Models
 		public List<UserLiteAvatarDecorationsItemsModel> AvatarDecorations { get; set; }
 		public bool IsBot { get; set; }
 		public bool IsCat { get; set; }
+		public bool RequireSigninToViewContents { get; set; }
+		public decimal? MakeNotesFollowersOnlyBefore { get; set; }
+		public decimal? MakeNotesHiddenBefore { get; set; }
 		public UserLiteInstanceModel Instance { get; set; }
 		public Dictionary<string, string> Emojis { get; set; }
 		public UserLiteOnlineStatusEnum OnlineStatus { get; set; }
@@ -88,6 +91,9 @@ namespace Misharp.Models
 				AvatarDecorations = userDetailedNotMe.AvatarDecorations,
 				IsBot = userDetailedNotMe.IsBot,
 				IsCat = userDetailedNotMe.IsCat,
+				RequireSigninToViewContents = userDetailedNotMe.RequireSigninToViewContents,
+				MakeNotesFollowersOnlyBefore = userDetailedNotMe.MakeNotesFollowersOnlyBefore,
+				MakeNotesHiddenBefore = userDetailedNotMe.MakeNotesHiddenBefore,
 				Instance = userDetailedNotMe.Instance,
 				Emojis = userDetailedNotMe.Emojis,
 				OnlineStatus = userDetailedNotMe.OnlineStatus,
