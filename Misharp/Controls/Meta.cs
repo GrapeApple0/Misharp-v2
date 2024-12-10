@@ -26,62 +26,62 @@ namespace Misharp.Controls
 		}
         public class MetaMetaModel : IMetaMetaModel
         {
-            public string? MaintainerName { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-            public string? MaintainerEmail { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-            public string Version { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-            public bool ProvidesTarball { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-            public string? Name { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-            public string? ShortName { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-            public Uri Uri { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-            public string? Description { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-            public List<string> Langs { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-            public string? TosUrl { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-            public string? RepositoryUrl { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-            public string? FeedbackUrl { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-            public string? DefaultDarkTheme { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-            public string? DefaultLightTheme { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-            public bool DisableRegistration { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-            public bool EmailRequiredForSignup { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-            public bool EnableHcaptcha { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-            public string? HcaptchaSiteKey { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-            public bool EnableMcaptcha { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-            public string? McaptchaSiteKey { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-            public string? McaptchaInstanceUrl { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-            public bool EnableRecaptcha { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-            public string? RecaptchaSiteKey { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-            public bool EnableTurnstile { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-            public string? TurnstileSiteKey { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-            public bool EnableTestcaptcha { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-            public string? SwPublickey { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-            public string MascotImageUrl { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-            public string? BannerUrl { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-            public string? ServerErrorImageUrl { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-            public string? InfoImageUrl { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-            public string? NotFoundImageUrl { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-            public string? IconUrl { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-            public decimal MaxNoteTextLength { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-            public List<MetaLiteAdsItemsModel> Ads { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-            public decimal NotesPerOneAd { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-            public bool EnableEmail { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-            public bool EnableServiceWorker { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-            public bool TranslatorAvailable { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-            public string MediaProxy { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-            public bool EnableUrlPreview { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-            public string? BackgroundImageUrl { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-            public string? ImpressumUrl { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-            public string? LogoImageUrl { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-            public string? PrivacyPolicyUrl { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-            public string? InquiryUrl { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-            public List<string> ServerRules { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-            public string? ThemeColor { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-            public RolePoliciesModel Policies { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-            public MetaLiteNoteSearchableScopeEnum NoteSearchableScope { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-            public decimal MaxFileSize { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-            public MetaDetailedOnlyFeaturesModel Features { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-            public string? ProxyAccountName { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-            public bool RequireSetup { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-            public bool CacheRemoteFiles { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-            public bool CacheRemoteSensitiveFiles { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+            public string? MaintainerName { get; set; }
+            public string? MaintainerEmail { get; set; }
+            public string Version { get; set; }
+            public bool ProvidesTarball { get; set; }
+            public string? Name { get; set; }
+            public string? ShortName { get; set; }
+            public Uri Uri { get; set; }
+            public string? Description { get; set; }
+            public List<string> Langs { get; set; }
+            public string? TosUrl { get; set; }
+            public string? RepositoryUrl { get; set; }
+            public string? FeedbackUrl { get; set; }
+            public string? DefaultDarkTheme { get; set; }
+            public string? DefaultLightTheme { get; set; }
+            public bool DisableRegistration { get; set; }
+            public bool EmailRequiredForSignup { get; set; }
+            public bool EnableHcaptcha { get; set; }
+            public string? HcaptchaSiteKey { get; set; }
+            public bool EnableMcaptcha { get; set; }
+            public string? McaptchaSiteKey { get; set; }
+            public string? McaptchaInstanceUrl { get; set; }
+            public bool EnableRecaptcha { get; set; }
+            public string? RecaptchaSiteKey { get; set; }
+            public bool EnableTurnstile { get; set; }
+            public string? TurnstileSiteKey { get; set; }
+            public bool EnableTestcaptcha { get; set; }
+            public string? SwPublickey { get; set; }
+            public string MascotImageUrl { get; set; }
+            public string? BannerUrl { get; set; }
+            public string? ServerErrorImageUrl { get; set; }
+            public string? InfoImageUrl { get; set; }
+            public string? NotFoundImageUrl { get; set; }
+            public string? IconUrl { get; set; }
+            public decimal MaxNoteTextLength { get; set; }
+            public List<MetaLiteAdsItemsModel> Ads { get; set; }
+            public decimal NotesPerOneAd { get; set; }
+            public bool EnableEmail { get; set; }
+            public bool EnableServiceWorker { get; set; }
+            public bool TranslatorAvailable { get; set; }
+            public string MediaProxy { get; set; }
+            public bool EnableUrlPreview { get; set; }
+            public string? BackgroundImageUrl { get; set; }
+            public string? ImpressumUrl { get; set; }
+            public string? LogoImageUrl { get; set; }
+            public string? PrivacyPolicyUrl { get; set; }
+            public string? InquiryUrl { get; set; }
+            public List<string> ServerRules { get; set; }
+            public string? ThemeColor { get; set; }
+            public RolePoliciesModel Policies { get; set; }
+            public MetaLiteNoteSearchableScopeEnum NoteSearchableScope { get; set; }
+            public decimal MaxFileSize { get; set; }
+            public MetaDetailedOnlyFeaturesModel Features { get; set; }
+            public string? ProxyAccountName { get; set; }
+            public bool RequireSetup { get; set; }
+            public bool CacheRemoteFiles { get; set; }
+            public bool CacheRemoteSensitiveFiles { get; set; }
         }
         public MetaApi(App app)
 		{

@@ -73,5 +73,73 @@ namespace Misharp.Models
 		{
 			return JsonSerializer.Serialize(this, Config.JsonSerializerOptions);
 		}
+		public static implicit operator MetaLiteModel(MetaDetailedModel metaDetailed)
+		{
+			return new MetaLiteModel()
+			{
+				MaintainerName = metaDetailed.MaintainerName,
+				MaintainerEmail = metaDetailed.MaintainerEmail,
+				Version = metaDetailed.Version,
+				ProvidesTarball = metaDetailed.ProvidesTarball,
+				Name = metaDetailed.Name,
+				ShortName = metaDetailed.ShortName,
+				Uri = metaDetailed.Uri,
+				Description = metaDetailed.Description,
+				Langs = metaDetailed.Langs,
+				TosUrl = metaDetailed.TosUrl,
+				RepositoryUrl = metaDetailed.RepositoryUrl,
+				FeedbackUrl = metaDetailed.FeedbackUrl,
+				DefaultDarkTheme = metaDetailed.DefaultDarkTheme,
+				DefaultLightTheme = metaDetailed.DefaultLightTheme,
+				DisableRegistration = metaDetailed.DisableRegistration,
+				EmailRequiredForSignup = metaDetailed.EmailRequiredForSignup,
+				EnableHcaptcha = metaDetailed.EnableHcaptcha,
+				HcaptchaSiteKey = metaDetailed.HcaptchaSiteKey,
+				EnableMcaptcha = metaDetailed.EnableMcaptcha,
+				McaptchaSiteKey = metaDetailed.McaptchaSiteKey,
+				McaptchaInstanceUrl = metaDetailed.McaptchaInstanceUrl,
+				EnableRecaptcha = metaDetailed.EnableRecaptcha,
+				RecaptchaSiteKey = metaDetailed.RecaptchaSiteKey,
+				EnableTurnstile = metaDetailed.EnableTurnstile,
+				TurnstileSiteKey = metaDetailed.TurnstileSiteKey,
+				EnableTestcaptcha = metaDetailed.EnableTestcaptcha,
+				SwPublickey = metaDetailed.SwPublickey,
+				MascotImageUrl = metaDetailed.MascotImageUrl,
+				BannerUrl = metaDetailed.BannerUrl,
+				ServerErrorImageUrl = metaDetailed.ServerErrorImageUrl,
+				InfoImageUrl = metaDetailed.InfoImageUrl,
+				NotFoundImageUrl = metaDetailed.NotFoundImageUrl,
+				IconUrl = metaDetailed.IconUrl,
+				MaxNoteTextLength = metaDetailed.MaxNoteTextLength,
+				Ads = metaDetailed.Ads,
+				NotesPerOneAd = metaDetailed.NotesPerOneAd,
+				EnableEmail = metaDetailed.EnableEmail,
+				EnableServiceWorker = metaDetailed.EnableServiceWorker,
+				TranslatorAvailable = metaDetailed.TranslatorAvailable,
+				MediaProxy = metaDetailed.MediaProxy,
+				EnableUrlPreview = metaDetailed.EnableUrlPreview,
+				BackgroundImageUrl = metaDetailed.BackgroundImageUrl,
+				ImpressumUrl = metaDetailed.ImpressumUrl,
+				LogoImageUrl = metaDetailed.LogoImageUrl,
+				PrivacyPolicyUrl = metaDetailed.PrivacyPolicyUrl,
+				InquiryUrl = metaDetailed.InquiryUrl,
+				ServerRules = metaDetailed.ServerRules,
+				ThemeColor = metaDetailed.ThemeColor,
+				Policies = metaDetailed.Policies,
+				NoteSearchableScope = metaDetailed.NoteSearchableScope,
+				MaxFileSize = metaDetailed.MaxFileSize,
+			};
+		}
+		public static implicit operator MetaDetailedOnlyModel(MetaDetailedModel metaDetailed)
+		{
+			return new MetaDetailedOnlyModel()
+			{
+				Features = metaDetailed.Features,
+				ProxyAccountName = metaDetailed.ProxyAccountName,
+				RequireSetup = metaDetailed.RequireSetup,
+				CacheRemoteFiles = metaDetailed.CacheRemoteFiles,
+				CacheRemoteSensitiveFiles = metaDetailed.CacheRemoteSensitiveFiles,
+			};
+		}
 	}
 }

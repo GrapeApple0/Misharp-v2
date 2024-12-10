@@ -111,5 +111,121 @@ namespace Misharp.Models
 		{
 			return JsonSerializer.Serialize(this, Config.JsonSerializerOptions);
 		}
+		public static implicit operator UserLiteModel(MeDetailedModel meDetailed)
+		{
+			return new UserLiteModel()
+			{
+				Id = meDetailed.Id,
+				Name = meDetailed.Name,
+				Username = meDetailed.Username,
+				Host = meDetailed.Host,
+				AvatarUrl = meDetailed.AvatarUrl,
+				AvatarBlurhash = meDetailed.AvatarBlurhash,
+				AvatarDecorations = meDetailed.AvatarDecorations,
+				IsBot = meDetailed.IsBot,
+				IsCat = meDetailed.IsCat,
+				Instance = meDetailed.Instance,
+				Emojis = meDetailed.Emojis,
+				OnlineStatus = meDetailed.OnlineStatus,
+				BadgeRoles = meDetailed.BadgeRoles,
+			};
+		}
+		public static implicit operator UserDetailedNotMeOnlyModel(MeDetailedModel meDetailed)
+		{
+			return new UserDetailedNotMeOnlyModel()
+			{
+				Url = meDetailed.Url,
+				Uri = meDetailed.Uri,
+				MovedTo = meDetailed.MovedTo,
+				AlsoKnownAs = meDetailed.AlsoKnownAs,
+				CreatedAt = meDetailed.CreatedAt,
+				UpdatedAt = meDetailed.UpdatedAt,
+				LastFetchedAt = meDetailed.LastFetchedAt,
+				BannerUrl = meDetailed.BannerUrl,
+				BannerBlurhash = meDetailed.BannerBlurhash,
+				IsLocked = meDetailed.IsLocked,
+				IsSilenced = meDetailed.IsSilenced,
+				IsSuspended = meDetailed.IsSuspended,
+				Description = meDetailed.Description,
+				Location = meDetailed.Location,
+				Birthday = meDetailed.Birthday,
+				Lang = meDetailed.Lang,
+				Fields = meDetailed.Fields,
+				VerifiedLinks = meDetailed.VerifiedLinks,
+				FollowersCount = meDetailed.FollowersCount,
+				FollowingCount = meDetailed.FollowingCount,
+				NotesCount = meDetailed.NotesCount,
+				PinnedNoteIds = meDetailed.PinnedNoteIds,
+				PinnedNotes = meDetailed.PinnedNotes,
+				PinnedPageId = meDetailed.PinnedPageId,
+				PinnedPage = meDetailed.PinnedPage,
+				PublicReactions = meDetailed.PublicReactions,
+				FollowingVisibility = meDetailed.FollowingVisibility,
+				FollowersVisibility = meDetailed.FollowersVisibility,
+				Roles = meDetailed.Roles,
+				FollowedMessage = meDetailed.FollowedMessage,
+				Memo = meDetailed.Memo,
+				ModerationNote = meDetailed.ModerationNote,
+				TwoFactorEnabled = meDetailed.TwoFactorEnabled,
+				UsePasswordLessLogin = meDetailed.UsePasswordLessLogin,
+				SecurityKeys = meDetailed.SecurityKeys,
+				IsFollowing = meDetailed.IsFollowing,
+				IsFollowed = meDetailed.IsFollowed,
+				HasPendingFollowRequestFromYou = meDetailed.HasPendingFollowRequestFromYou,
+				HasPendingFollowRequestToYou = meDetailed.HasPendingFollowRequestToYou,
+				IsBlocking = meDetailed.IsBlocking,
+				IsBlocked = meDetailed.IsBlocked,
+				IsMuted = meDetailed.IsMuted,
+				IsRenoteMuted = meDetailed.IsRenoteMuted,
+				Notify = meDetailed.Notify,
+				WithReplies = meDetailed.WithReplies,
+			};
+		}
+		public static implicit operator MeDetailedOnlyModel(MeDetailedModel meDetailed)
+		{
+			return new MeDetailedOnlyModel()
+			{
+				AvatarId = meDetailed.AvatarId,
+				BannerId = meDetailed.BannerId,
+				FollowedMessage = meDetailed.FollowedMessage,
+				IsModerator = meDetailed.IsModerator,
+				IsAdmin = meDetailed.IsAdmin,
+				InjectFeaturedNote = meDetailed.InjectFeaturedNote,
+				ReceiveAnnouncementEmail = meDetailed.ReceiveAnnouncementEmail,
+				AlwaysMarkNsfw = meDetailed.AlwaysMarkNsfw,
+				AutoSensitive = meDetailed.AutoSensitive,
+				CarefulBot = meDetailed.CarefulBot,
+				AutoAcceptFollowed = meDetailed.AutoAcceptFollowed,
+				NoCrawle = meDetailed.NoCrawle,
+				PreventAiLearning = meDetailed.PreventAiLearning,
+				IsExplorable = meDetailed.IsExplorable,
+				IsDeleted = meDetailed.IsDeleted,
+				TwoFactorBackupCodesStock = meDetailed.TwoFactorBackupCodesStock,
+				HideOnlineStatus = meDetailed.HideOnlineStatus,
+				HasUnreadSpecifiedNotes = meDetailed.HasUnreadSpecifiedNotes,
+				HasUnreadMentions = meDetailed.HasUnreadMentions,
+				HasUnreadAnnouncement = meDetailed.HasUnreadAnnouncement,
+				UnreadAnnouncements = meDetailed.UnreadAnnouncements,
+				HasUnreadAntenna = meDetailed.HasUnreadAntenna,
+				HasUnreadChannel = meDetailed.HasUnreadChannel,
+				HasUnreadNotification = meDetailed.HasUnreadNotification,
+				HasPendingReceivedFollowRequest = meDetailed.HasPendingReceivedFollowRequest,
+				UnreadNotificationsCount = meDetailed.UnreadNotificationsCount,
+				MutedWords = meDetailed.MutedWords,
+				HardMutedWords = meDetailed.HardMutedWords,
+				MutedInstances = meDetailed.MutedInstances,
+				NotificationRecieveConfig = meDetailed.NotificationRecieveConfig,
+				EmailNotificationTypes = meDetailed.EmailNotificationTypes,
+				Achievements = meDetailed.Achievements,
+				LoggedInDays = meDetailed.LoggedInDays,
+				Policies = meDetailed.Policies,
+				TwoFactorEnabled = meDetailed.TwoFactorEnabled,
+				UsePasswordLessLogin = meDetailed.UsePasswordLessLogin,
+				SecurityKeys = meDetailed.SecurityKeys,
+				Email = meDetailed.Email,
+				EmailVerified = meDetailed.EmailVerified,
+				SecurityKeysList = meDetailed.SecurityKeysList,
+			};
+		}
 	}
 }

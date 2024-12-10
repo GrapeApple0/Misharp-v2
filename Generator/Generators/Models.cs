@@ -94,6 +94,13 @@ namespace Generator.Generators
                 sb.Append(multiplePropertiesSB);
             }
             Tools.GenerateToString(sb, indent + 1);
+            if (dependencies.Count > 0)
+            {
+                foreach (var dependency in dependencies)
+                {
+                    Tools.GenerateConverter(sb, components.Schemas, interfaceName, dependency, indent + 1);
+                }
+            }
             sb.AppendLineWithIndent("}", indent);
             sb.Append(subSB);
         }

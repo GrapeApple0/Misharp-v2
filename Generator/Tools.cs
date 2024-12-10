@@ -25,6 +25,12 @@ namespace Generator
             return res;
         }
 
+        public static string ConvertToCamelCase(string str)
+        {
+            var res = ConvertToPascalCase(str);
+            return char.ToLowerInvariant(res[0]) + res[1..];
+        }
+
         public static ObjectType ParseObjectType(JsonNode jsonNode, string? format = null)
         {
             var type = "JsonNode";
@@ -184,6 +190,31 @@ namespace Generator
             sb.AppendLineWithIndent("{", indent);
             sb.AppendLineWithIndent("return JsonSerializer.Serialize(this, Config.JsonSerializerOptions);", indent + 1);
             sb.AppendLineWithIndent("}", indent);
+        }
+
+        public static void GenerateConverter(StringBuilder sb, Dictionary<string, ComponentObject> schemas, string source, string @ref, int indent = 3)
+        {
+            // public static implicit operator UserDetailedNotMeModel(UserDetailedModel userDetailedModel)
+            // {
+            //     return new UserDetailedNotMeModel()
+            //     {
+            // 
+            //     };
+            // }
+            var model = ExtractRef(@ref, schemas);
+            if (model != null)
+            {
+                sb.AppendLineWithIndent($"public static implicit operator {ConvertToPascalCase(@ref)}Model({ConvertToPascalCase(source)}Model {ConvertToCamelCase(source)})", indent);
+                sb.AppendLineWithIndent("{", indent);
+                sb.AppendLineWithIndent($"return new {ConvertToPascalCase(@ref)}Model()", indent + 1);
+                sb.AppendLineWithIndent("{", indent + 1);
+                foreach (var (name, property) in model)
+                {
+                    sb.AppendLineWithIndent($"{ConvertToPascalCase(name)} = {ConvertToCamelCase(source)}.{ConvertToPascalCase(name)},", indent + 2);
+                }
+                sb.AppendLineWithIndent("};", indent + 1);
+                sb.AppendLineWithIndent("}", indent);
+            }
         }
 
         public static ObjectType GenerateObjectType(StringBuilder sb, StringBuilder subSB, string interfaceName, string propertyName,

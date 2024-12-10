@@ -23,9 +23,9 @@ namespace Generator
             if (jsonNode == null) return;
             Console.WriteLine($"Api.json's Misskey Version: {jsonNode.Info.Version}");
             // Models
-            //Console.WriteLine("Generating Models...");
-            //Generators.Models.Generate(jsonNode.Components);
-            //Console.WriteLine("Done!");
+            Console.WriteLine("Generating Models...");
+            Generators.Models.Generate(jsonNode.Components);
+            Console.WriteLine("Done!");
             //Controls(Paths)
             Console.WriteLine("Generating Controls...");
             Generators.Controls.Generate(jsonNode.Paths);

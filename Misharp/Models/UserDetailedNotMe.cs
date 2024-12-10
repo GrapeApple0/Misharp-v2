@@ -75,5 +75,75 @@ namespace Misharp.Models
 		{
 			return JsonSerializer.Serialize(this, Config.JsonSerializerOptions);
 		}
+		public static implicit operator UserLiteModel(UserDetailedNotMeModel userDetailedNotMe)
+		{
+			return new UserLiteModel()
+			{
+				Id = userDetailedNotMe.Id,
+				Name = userDetailedNotMe.Name,
+				Username = userDetailedNotMe.Username,
+				Host = userDetailedNotMe.Host,
+				AvatarUrl = userDetailedNotMe.AvatarUrl,
+				AvatarBlurhash = userDetailedNotMe.AvatarBlurhash,
+				AvatarDecorations = userDetailedNotMe.AvatarDecorations,
+				IsBot = userDetailedNotMe.IsBot,
+				IsCat = userDetailedNotMe.IsCat,
+				Instance = userDetailedNotMe.Instance,
+				Emojis = userDetailedNotMe.Emojis,
+				OnlineStatus = userDetailedNotMe.OnlineStatus,
+				BadgeRoles = userDetailedNotMe.BadgeRoles,
+			};
+		}
+		public static implicit operator UserDetailedNotMeOnlyModel(UserDetailedNotMeModel userDetailedNotMe)
+		{
+			return new UserDetailedNotMeOnlyModel()
+			{
+				Url = userDetailedNotMe.Url,
+				Uri = userDetailedNotMe.Uri,
+				MovedTo = userDetailedNotMe.MovedTo,
+				AlsoKnownAs = userDetailedNotMe.AlsoKnownAs,
+				CreatedAt = userDetailedNotMe.CreatedAt,
+				UpdatedAt = userDetailedNotMe.UpdatedAt,
+				LastFetchedAt = userDetailedNotMe.LastFetchedAt,
+				BannerUrl = userDetailedNotMe.BannerUrl,
+				BannerBlurhash = userDetailedNotMe.BannerBlurhash,
+				IsLocked = userDetailedNotMe.IsLocked,
+				IsSilenced = userDetailedNotMe.IsSilenced,
+				IsSuspended = userDetailedNotMe.IsSuspended,
+				Description = userDetailedNotMe.Description,
+				Location = userDetailedNotMe.Location,
+				Birthday = userDetailedNotMe.Birthday,
+				Lang = userDetailedNotMe.Lang,
+				Fields = userDetailedNotMe.Fields,
+				VerifiedLinks = userDetailedNotMe.VerifiedLinks,
+				FollowersCount = userDetailedNotMe.FollowersCount,
+				FollowingCount = userDetailedNotMe.FollowingCount,
+				NotesCount = userDetailedNotMe.NotesCount,
+				PinnedNoteIds = userDetailedNotMe.PinnedNoteIds,
+				PinnedNotes = userDetailedNotMe.PinnedNotes,
+				PinnedPageId = userDetailedNotMe.PinnedPageId,
+				PinnedPage = userDetailedNotMe.PinnedPage,
+				PublicReactions = userDetailedNotMe.PublicReactions,
+				FollowingVisibility = userDetailedNotMe.FollowingVisibility,
+				FollowersVisibility = userDetailedNotMe.FollowersVisibility,
+				Roles = userDetailedNotMe.Roles,
+				FollowedMessage = userDetailedNotMe.FollowedMessage,
+				Memo = userDetailedNotMe.Memo,
+				ModerationNote = userDetailedNotMe.ModerationNote,
+				TwoFactorEnabled = userDetailedNotMe.TwoFactorEnabled,
+				UsePasswordLessLogin = userDetailedNotMe.UsePasswordLessLogin,
+				SecurityKeys = userDetailedNotMe.SecurityKeys,
+				IsFollowing = userDetailedNotMe.IsFollowing,
+				IsFollowed = userDetailedNotMe.IsFollowed,
+				HasPendingFollowRequestFromYou = userDetailedNotMe.HasPendingFollowRequestFromYou,
+				HasPendingFollowRequestToYou = userDetailedNotMe.HasPendingFollowRequestToYou,
+				IsBlocking = userDetailedNotMe.IsBlocking,
+				IsBlocked = userDetailedNotMe.IsBlocked,
+				IsMuted = userDetailedNotMe.IsMuted,
+				IsRenoteMuted = userDetailedNotMe.IsRenoteMuted,
+				Notify = userDetailedNotMe.Notify,
+				WithReplies = userDetailedNotMe.WithReplies,
+			};
+		}
 	}
 }

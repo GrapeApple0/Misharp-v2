@@ -45,6 +45,20 @@ namespace Misharp.Models
 		{
 			return JsonSerializer.Serialize(this, Config.JsonSerializerOptions);
 		}
+		public static implicit operator RoleLiteModel(RoleModel role)
+		{
+			return new RoleLiteModel()
+			{
+				Id = role.Id,
+				Name = role.Name,
+				Color = role.Color,
+				IconUrl = role.IconUrl,
+				Description = role.Description,
+				IsModerator = role.IsModerator,
+				IsAdministrator = role.IsAdministrator,
+				DisplayOrder = role.DisplayOrder,
+			};
+		}
 	}
 	public enum RoleTargetEnum {
 		[EnumMember(Value = "manual")]
