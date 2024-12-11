@@ -6,6 +6,7 @@ public enum ChannelType
 {
     [EnumMember(Value = "main")] Main,
     [EnumMember(Value = "homeTimeline")] HomeTimeline,
+    [EnumMember(Value = "localTimeline")] LocalTimeline,
     [EnumMember(Value = "hybridTimeline")] HybridTimeline,
     [EnumMember(Value = "globalTimeline")] GlobalTimeline,
     [EnumMember(Value = "userList")] UserList,
