@@ -45,6 +45,8 @@ public class Streaming
     public event Handlers.DeletedHandler? DeletedReceived;
     public event Handlers.PollVotedHandler? PollVotedReceived;
 
+    public bool IsConnected => _ws.State == WebSocketState.Open;
+
     private readonly HashSet<string> _ids = new();
     private readonly string _uri;
     private readonly ClientWebSocket _ws = new();
@@ -493,23 +495,7 @@ public class Streaming
         await Send(jsonText);
     }
 
-    public async Task Unsubscribe(int id)
-    {
-        var param = new Dictionary<string, object>
-        {
-            { "type", "disconnect" },
-            {
-                "body", new Dictionary<string, object>
-                {
-                    { "id", id.ToString() }
-                }
-            }
-        };
-        var jsonText = JsonSerializer.Serialize(param, Config.JsonSerializerOptions);
-        await Send(jsonText);
-    }
-
-    public async Task Unsubscribe(string noteId)
+    public async Task Unsubscribe(string id)
     {
         var param = new Dictionary<string, object>
         {
@@ -517,11 +503,16 @@ public class Streaming
             {
                 "body", new Dictionary<string, object>
                 {
-                    { "id", noteId }
+                    { "id", id }
                 }
             }
         };
         var jsonText = JsonSerializer.Serialize(param, Config.JsonSerializerOptions);
         await Send(jsonText);
+    }
+
+    public bool IsSubscribed(string id)
+    {
+        return _ids.Contains(id);
     }
 }

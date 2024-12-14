@@ -9,16 +9,17 @@
         <PackageProjectUrl>https://github.com/GrapeApple0/Misharp-v2</PackageProjectUrl>
         <AssemblyVersion>$(PackageVersion)</AssemblyVersion>
         <FileVersion>$(PackageVersion)</FileVersion>
-        <Version>2024.11.0</Version>
+        <Version>2024.11.0.1</Version>
         <Description>Yet Another Misskey Library</Description>
         <PackageLicenseFile>LICENSE</PackageLicenseFile>
         <PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>
         <PackageLicenseUrl></PackageLicenseUrl>
         <PackageTags>Misskey</PackageTags>
+        <Authors>Porlam Nicla</Authors>
     </PropertyGroup>
 
     <ItemGroup>
-        <Folder Include="Controls\" />
+        <Folder Include="Controls\"/>
     </ItemGroup>
 
     <ItemGroup>
