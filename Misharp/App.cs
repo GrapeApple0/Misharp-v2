@@ -262,12 +262,12 @@ public class App
                 if (value is Enum @enum)
                     stringContent =
                         new StringContent($"{@enum.GetEnumMemberValue() ?? value}", new UTF8Encoding(false));
-                stringContent.Headers.ContentDisposition =
-                    new System.Net.Http.Headers.ContentDispositionHeaderValue("form-data")
-                    {
-                        Name = key
-                    };
-                content.Add(stringContent);
+                // stringContent.Headers.ContentDisposition =
+                //     new System.Net.Http.Headers.ContentDispositionHeaderValue("form-data")
+                //     {
+                //         Name = key
+                //     };
+                content.Add(stringContent, key);
             }
 
         if (Token != "")
