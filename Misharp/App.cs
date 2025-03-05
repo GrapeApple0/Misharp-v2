@@ -258,15 +258,21 @@ public class App
             }
             else if (value != null)
             {
-                var stringContent = new StringContent($"{value}", new UTF8Encoding(false));
+                var c = value.ToString() ?? "";
                 if (value is Enum @enum)
-                    stringContent =
-                        new StringContent($"{@enum.GetEnumMemberValue() ?? value}", new UTF8Encoding(false));
+                {
+                    c = $"{@enum.GetEnumMemberValue() ?? value}";
+                }
+                else if (value is bool b)
+                {
+                    c = b ? "true" : "false";
+                }
                 // stringContent.Headers.ContentDisposition =
                 //     new System.Net.Http.Headers.ContentDispositionHeaderValue("form-data")
                 //     {
                 //         Name = key
                 //     };
+                var stringContent = new StringContent(c, new UTF8Encoding(false));
                 content.Add(stringContent, key);
             }
 
