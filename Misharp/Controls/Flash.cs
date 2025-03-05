@@ -76,6 +76,48 @@ namespace Misharp.Controls
 			return result;
 		}
 
+		public async Task<Response<List<FlashModel>>> My(int limit = 10,string? sinceId = null,string? untilId = null)
+		{
+			var param = new Dictionary<string, object?>
+			{
+				{ "limit", limit },
+				{ "sinceId", sinceId },
+				{ "untilId", untilId },
+			};
+			var result = await _app.Request<List<FlashModel>>(
+				"flash/my", 
+				param, 
+				needToken: true
+			);
+			return result;
+		}
+
+		public async Task<Response<List<PostMyLikesItemsModel>>> MyLikes(int limit = 10,string? sinceId = null,string? untilId = null)
+		{
+			var param = new Dictionary<string, object?>
+			{
+				{ "limit", limit },
+				{ "sinceId", sinceId },
+				{ "untilId", untilId },
+			};
+			var result = await _app.Request<List<PostMyLikesItemsModel>>(
+				"flash/my-likes", 
+				param, 
+				needToken: true
+			);
+			return result;
+		}
+
+		public interface IPostMyLikesItemsModel
+		{
+			public string Id { get; set; }
+			public FlashModel Flash { get; set; }
+		}
+		public class PostMyLikesItemsModel: IPostMyLikesItemsModel
+		{
+			public string Id { get; set; }
+			public FlashModel Flash { get; set; }
+		}
 		public async Task<Response<FlashModel>> Show(string flashId)
 		{
 			var param = new Dictionary<string, object?>
@@ -130,48 +172,6 @@ namespace Misharp.Controls
 			Public,
 			[EnumMember(Value = "private")]
 			Private,
-		}
-		public async Task<Response<List<FlashModel>>> My(int limit = 10,string? sinceId = null,string? untilId = null)
-		{
-			var param = new Dictionary<string, object?>
-			{
-				{ "limit", limit },
-				{ "sinceId", sinceId },
-				{ "untilId", untilId },
-			};
-			var result = await _app.Request<List<FlashModel>>(
-				"flash/my", 
-				param, 
-				needToken: true
-			);
-			return result;
-		}
-
-		public async Task<Response<List<FlashMyLikesItemsModel>>> MyLikes(int limit = 10,string? sinceId = null,string? untilId = null)
-		{
-			var param = new Dictionary<string, object?>
-			{
-				{ "limit", limit },
-				{ "sinceId", sinceId },
-				{ "untilId", untilId },
-			};
-			var result = await _app.Request<List<FlashMyLikesItemsModel>>(
-				"flash/my-likes", 
-				param, 
-				needToken: true
-			);
-			return result;
-		}
-
-		public interface IFlashMyLikesItemsModel
-		{
-			public string Id { get; set; }
-			public FlashModel Flash { get; set; }
-		}
-		public class FlashMyLikesItemsModel: IFlashMyLikesItemsModel
-		{
-			public string Id { get; set; }
-			public FlashModel Flash { get; set; }
 		}
 		public FlashApi(App app)
 		{

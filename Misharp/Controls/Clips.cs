@@ -23,22 +23,6 @@ namespace Misharp.Controls
 			return result;
 		}
 
-		public async Task<Response<EmptyResponse>> RemoveNote(string clipId,string noteId)
-		{
-			var param = new Dictionary<string, object?>
-			{
-				{ "clipId", clipId },
-				{ "noteId", noteId },
-			};
-			var result = await _app.Request<EmptyResponse>(
-				"clips/remove-note", 
-				param, 
-				successStatusCode: System.Net.HttpStatusCode.NoContent, 
-				needToken: true
-			);
-			return result;
-		}
-
 		public async Task<Response<ClipModel>> Create(string name,bool isPublic = false,string? description = null)
 		{
 			var param = new Dictionary<string, object?>
@@ -70,10 +54,34 @@ namespace Misharp.Controls
 			return result;
 		}
 
+		public async Task<Response<EmptyResponse>> Favorite(string clipId)
+		{
+			var param = new Dictionary<string, object?>
+			{
+				{ "clipId", clipId },
+			};
+			var result = await _app.Request<EmptyResponse>(
+				"clips/favorite", 
+				param, 
+				successStatusCode: System.Net.HttpStatusCode.NoContent, 
+				needToken: true
+			);
+			return result;
+		}
+
 		public async Task<Response<List<ClipModel>>> List()
 		{
 			var result = await _app.Request<List<ClipModel>>(
 				"clips/list", 
+				needToken: true
+			);
+			return result;
+		}
+
+		public async Task<Response<List<ClipModel>>> MyFavorites()
+		{
+			var result = await _app.Request<List<ClipModel>>(
+				"clips/my-favorites", 
 				needToken: true
 			);
 			return result;
@@ -96,6 +104,22 @@ namespace Misharp.Controls
 			return result;
 		}
 
+		public async Task<Response<EmptyResponse>> RemoveNote(string clipId,string noteId)
+		{
+			var param = new Dictionary<string, object?>
+			{
+				{ "clipId", clipId },
+				{ "noteId", noteId },
+			};
+			var result = await _app.Request<EmptyResponse>(
+				"clips/remove-note", 
+				param, 
+				successStatusCode: System.Net.HttpStatusCode.NoContent, 
+				needToken: true
+			);
+			return result;
+		}
+
 		public async Task<Response<ClipModel>> Show(string clipId)
 		{
 			var param = new Dictionary<string, object?>
@@ -106,38 +130,6 @@ namespace Misharp.Controls
 				"clips/show", 
 				param, 
 				needToken: false
-			);
-			return result;
-		}
-
-		public async Task<Response<ClipModel>> Update(string clipId,string name,bool isPublic,string? description = null)
-		{
-			var param = new Dictionary<string, object?>
-			{
-				{ "clipId", clipId },
-				{ "name", name },
-				{ "isPublic", isPublic },
-				{ "description", description },
-			};
-			var result = await _app.Request<ClipModel>(
-				"clips/update", 
-				param, 
-				needToken: true
-			);
-			return result;
-		}
-
-		public async Task<Response<EmptyResponse>> Favorite(string clipId)
-		{
-			var param = new Dictionary<string, object?>
-			{
-				{ "clipId", clipId },
-			};
-			var result = await _app.Request<EmptyResponse>(
-				"clips/favorite", 
-				param, 
-				successStatusCode: System.Net.HttpStatusCode.NoContent, 
-				needToken: true
 			);
 			return result;
 		}
@@ -157,10 +149,18 @@ namespace Misharp.Controls
 			return result;
 		}
 
-		public async Task<Response<List<ClipModel>>> MyFavorites()
+		public async Task<Response<ClipModel>> Update(string clipId,string name,bool isPublic,string? description = null)
 		{
-			var result = await _app.Request<List<ClipModel>>(
-				"clips/my-favorites", 
+			var param = new Dictionary<string, object?>
+			{
+				{ "clipId", clipId },
+				{ "name", name },
+				{ "isPublic", isPublic },
+				{ "description", description },
+			};
+			var result = await _app.Request<ClipModel>(
+				"clips/update", 
+				param, 
 				needToken: true
 			);
 			return result;

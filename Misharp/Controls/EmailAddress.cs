@@ -7,13 +7,13 @@ namespace Misharp.Controls
 	public class EmailAddressApi
 	{
 		private readonly App _app;
-		public async Task<Response<EmailAddressAvailableModel>> Available(string emailAddress)
+		public async Task<Response<PostAvailableModel>> Available(string emailAddress)
 		{
 			var param = new Dictionary<string, object?>
 			{
 				{ "emailAddress", emailAddress },
 			};
-			var result = await _app.Request<EmailAddressAvailableModel>(
+			var result = await _app.Request<PostAvailableModel>(
 				"email-address/available", 
 				param, 
 				needToken: false
@@ -21,12 +21,12 @@ namespace Misharp.Controls
 			return result;
 		}
 
-		public interface IEmailAddressAvailableModel
+		public interface IPostAvailableModel
 		{
 			public bool Available { get; set; }
 			public string? Reason { get; set; }
 		}
-		public class EmailAddressAvailableModel: IEmailAddressAvailableModel
+		public class PostAvailableModel: IPostAvailableModel
 		{
 			public bool Available { get; set; }
 			public string? Reason { get; set; }

@@ -75,7 +75,7 @@ namespace Misharp.Controls
 			return result;
 		}
 
-		public async Task<Response<NotesCreateModel>> Create(NotesCreatePropertiesVisibilityEnum visibility = NotesCreatePropertiesVisibilityEnum.Public,List<string>? visibleUserIds = null,string? cw = null,bool localOnly = false,NotesCreatePropertiesReactionAcceptanceEnum? reactionAcceptance = null,bool noExtractMentions = false,bool noExtractHashtags = false,bool noExtractEmojis = false,string? replyId = null,string? renoteId = null,string? channelId = null,string? text = null,List<string>? fileIds = null,List<string>? mediaIds = null,NotesCreatePropertiesPollModel? poll = null)
+		public async Task<Response<PostCreateModel>> Create(NotesCreatePropertiesVisibilityEnum visibility = NotesCreatePropertiesVisibilityEnum.Public,List<string>? visibleUserIds = null,string? cw = null,bool localOnly = false,NotesCreatePropertiesReactionAcceptanceEnum? reactionAcceptance = null,bool noExtractMentions = false,bool noExtractHashtags = false,bool noExtractEmojis = false,string? replyId = null,string? renoteId = null,string? channelId = null,string? text = null,List<string>? fileIds = null,List<string>? mediaIds = null,NotesCreatePropertiesPollModel? poll = null)
 		{
 			var param = new Dictionary<string, object?>
 			{
@@ -95,7 +95,7 @@ namespace Misharp.Controls
 				{ "mediaIds", mediaIds },
 				{ "poll", poll },
 			};
-			var result = await _app.Request<NotesCreateModel>(
+			var result = await _app.Request<PostCreateModel>(
 				"notes/create", 
 				param, 
 				needToken: true
@@ -137,11 +137,11 @@ namespace Misharp.Controls
 			public int? ExpiresAt { get; set; }
 			public int? ExpiredAfter { get; set; }
 		}
-		public interface INotesCreateModel
+		public interface IPostCreateModel
 		{
 			public NoteModel CreatedNote { get; set; }
 		}
-		public class NotesCreateModel: INotesCreateModel
+		public class PostCreateModel: IPostCreateModel
 		{
 			public NoteModel CreatedNote { get; set; }
 		}
@@ -347,6 +347,27 @@ namespace Misharp.Controls
 			return result;
 		}
 
+		public async Task<Response<List<NoteModel>>> Search(string query,string host,string? sinceId = null,string? untilId = null,int limit = 10,int offset = 0,string? userId = null,string? channelId = null)
+		{
+			var param = new Dictionary<string, object?>
+			{
+				{ "query", query },
+				{ "sinceId", sinceId },
+				{ "untilId", untilId },
+				{ "limit", limit },
+				{ "offset", offset },
+				{ "host", host },
+				{ "userId", userId },
+				{ "channelId", channelId },
+			};
+			var result = await _app.Request<List<NoteModel>>(
+				"notes/search", 
+				param, 
+				needToken: false
+			);
+			return result;
+		}
+
 		public async Task<Response<List<NoteModel>>> SearchByTag(string tag,bool? reply = null,bool? renote = null,bool withFiles = false,bool? poll = null,string? sinceId = null,string? untilId = null,int limit = 10,List<List<List<string>>>? query = null)
 		{
 			var param = new Dictionary<string, object?>
@@ -369,27 +390,6 @@ namespace Misharp.Controls
 			return result;
 		}
 
-		public async Task<Response<List<NoteModel>>> Search(string query,string host,string? sinceId = null,string? untilId = null,int limit = 10,int offset = 0,string? userId = null,string? channelId = null)
-		{
-			var param = new Dictionary<string, object?>
-			{
-				{ "query", query },
-				{ "sinceId", sinceId },
-				{ "untilId", untilId },
-				{ "limit", limit },
-				{ "offset", offset },
-				{ "host", host },
-				{ "userId", userId },
-				{ "channelId", channelId },
-			};
-			var result = await _app.Request<List<NoteModel>>(
-				"notes/search", 
-				param, 
-				needToken: false
-			);
-			return result;
-		}
-
 		public async Task<Response<NoteModel>> Show(string noteId)
 		{
 			var param = new Dictionary<string, object?>
@@ -404,13 +404,13 @@ namespace Misharp.Controls
 			return result;
 		}
 
-		public async Task<Response<NotesStateModel>> State(string noteId)
+		public async Task<Response<PostStateModel>> State(string noteId)
 		{
 			var param = new Dictionary<string, object?>
 			{
 				{ "noteId", noteId },
 			};
-			var result = await _app.Request<NotesStateModel>(
+			var result = await _app.Request<PostStateModel>(
 				"notes/state", 
 				param, 
 				needToken: true
@@ -418,12 +418,12 @@ namespace Misharp.Controls
 			return result;
 		}
 
-		public interface INotesStateModel
+		public interface IPostStateModel
 		{
 			public bool IsFavorited { get; set; }
 			public bool IsMutedThread { get; set; }
 		}
-		public class NotesStateModel: INotesStateModel
+		public class PostStateModel: IPostStateModel
 		{
 			public bool IsFavorited { get; set; }
 			public bool IsMutedThread { get; set; }
@@ -452,14 +452,14 @@ namespace Misharp.Controls
 			return result;
 		}
 
-		public async Task<Response<NotesTranslateModel>> Translate(string noteId,string targetLang)
+		public async Task<Response<PostTranslateModel>> Translate(string noteId,string targetLang)
 		{
 			var param = new Dictionary<string, object?>
 			{
 				{ "noteId", noteId },
 				{ "targetLang", targetLang },
 			};
-			var result = await _app.Request<NotesTranslateModel>(
+			var result = await _app.Request<PostTranslateModel>(
 				"notes/translate", 
 				param, 
 				needToken: true
@@ -467,12 +467,12 @@ namespace Misharp.Controls
 			return result;
 		}
 
-		public interface INotesTranslateModel
+		public interface IPostTranslateModel
 		{
 			public string SourceLang { get; set; }
 			public string Text { get; set; }
 		}
-		public class NotesTranslateModel: INotesTranslateModel
+		public class PostTranslateModel: IPostTranslateModel
 		{
 			public string SourceLang { get; set; }
 			public string Text { get; set; }

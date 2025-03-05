@@ -7,13 +7,13 @@ namespace Misharp.Controls
 	public class EndpointApi
 	{
 		private readonly App _app;
-		public async Task<Response<EndpointEndpointModel>> Endpoint(string endpoint)
+		public async Task<Response<PostEndpointModel>> Endpoint(string endpoint)
 		{
 			var param = new Dictionary<string, object?>
 			{
 				{ "endpoint", endpoint },
 			};
-			var result = await _app.Request<EndpointEndpointModel>(
+			var result = await _app.Request<PostEndpointModel>(
 				"endpoint", 
 				param, 
 				needToken: false
@@ -21,23 +21,23 @@ namespace Misharp.Controls
 			return result;
 		}
 
-		public interface IEndpointEndpointParamsItemsModel
+		public interface IPostEndpointParamsItemsModel
 		{
 			public string Name { get; set; }
 			public string Type { get; set; }
 		}
-		public class EndpointEndpointParamsItemsModel: IEndpointEndpointParamsItemsModel
+		public class PostEndpointParamsItemsModel: IPostEndpointParamsItemsModel
 		{
 			public string Name { get; set; }
 			public string Type { get; set; }
 		}
-		public interface IEndpointEndpointModel
+		public interface IPostEndpointModel
 		{
-			public List<EndpointEndpointParamsItemsModel> Params { get; set; }
+			public List<PostEndpointParamsItemsModel> Params { get; set; }
 		}
-		public class EndpointEndpointModel: IEndpointEndpointModel
+		public class PostEndpointModel: IPostEndpointModel
 		{
-			public List<EndpointEndpointParamsItemsModel> Params { get; set; }
+			public List<PostEndpointParamsItemsModel> Params { get; set; }
 		}
 		public EndpointApi(App app)
 		{

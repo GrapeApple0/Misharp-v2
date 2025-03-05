@@ -7,7 +7,7 @@ namespace Misharp.Controls
 	public class MiauthApi
 	{
 		private readonly App _app;
-		public async Task<Response<MiauthGenTokenModel>> GenToken(string? session = null,string? name = null,string? description = null,string? iconUrl = null,List<string>? permission = null)
+		public async Task<Response<PostGenTokenModel>> GenToken(string? session = null,string? name = null,string? description = null,string? iconUrl = null,List<string>? permission = null)
 		{
 			var param = new Dictionary<string, object?>
 			{
@@ -17,7 +17,7 @@ namespace Misharp.Controls
 				{ "iconUrl", iconUrl },
 				{ "permission", permission },
 			};
-			var result = await _app.Request<MiauthGenTokenModel>(
+			var result = await _app.Request<PostGenTokenModel>(
 				"miauth/gen-token", 
 				param, 
 				needToken: true
@@ -25,11 +25,11 @@ namespace Misharp.Controls
 			return result;
 		}
 
-		public interface IMiauthGenTokenModel
+		public interface IPostGenTokenModel
 		{
 			public string Token { get; set; }
 		}
-		public class MiauthGenTokenModel: IMiauthGenTokenModel
+		public class PostGenTokenModel: IPostGenTokenModel
 		{
 			public string Token { get; set; }
 		}

@@ -7,20 +7,20 @@ namespace Misharp.Controls
 	public class PingApi
 	{
 		private readonly App _app;
-		public async Task<Response<PingPingModel>> Ping()
+		public async Task<Response<PostPingModel>> Ping()
 		{
-			var result = await _app.Request<PingPingModel>(
+			var result = await _app.Request<PostPingModel>(
 				"ping", 
 				needToken: false
 			);
 			return result;
 		}
 
-		public interface IPingPingModel
+		public interface IPostPingModel
 		{
 			public decimal Pong { get; set; }
 		}
-		public class PingPingModel: IPingPingModel
+		public class PostPingModel: IPostPingModel
 		{
 			public decimal Pong { get; set; }
 		}

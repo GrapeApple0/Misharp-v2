@@ -34,6 +34,7 @@ namespace Misharp.Models
 		public bool EnableTurnstile { get; set; }
 		public string? TurnstileSiteKey { get; set; }
 		public bool EnableTestcaptcha { get; set; }
+		public string? GoogleAnalyticsMeasurementId { get; set; }
 		public string? SwPublickey { get; set; }
 		public string MascotImageUrl { get; set; }
 		public string? BannerUrl { get; set; }
@@ -59,6 +60,7 @@ namespace Misharp.Models
 		public RolePoliciesModel Policies { get; set; }
 		public MetaLiteNoteSearchableScopeEnum NoteSearchableScope { get; set; }
 		public decimal MaxFileSize { get; set; }
+		public MetaLiteFederationEnum Federation { get; set; }
 	}
 
 	public interface IMetaLiteAdsItemsModel
@@ -84,6 +86,14 @@ namespace Misharp.Models
 		Local,
 		[EnumMember(Value = "global")]
 		Global,
+	}
+	public enum MetaLiteFederationEnum {
+		[EnumMember(Value = "all")]
+		All,
+		[EnumMember(Value = "specified")]
+		Specified,
+		[EnumMember(Value = "none")]
+		None,
 	}
 
 	public class MetaLiteModel: IMetaLiteModel
@@ -114,6 +124,7 @@ namespace Misharp.Models
 		public bool EnableTurnstile { get; set; }
 		public string? TurnstileSiteKey { get; set; }
 		public bool EnableTestcaptcha { get; set; }
+		public string? GoogleAnalyticsMeasurementId { get; set; }
 		public string? SwPublickey { get; set; }
 		public string MascotImageUrl { get; set; }
 		public string? BannerUrl { get; set; }
@@ -139,6 +150,7 @@ namespace Misharp.Models
 		public RolePoliciesModel Policies { get; set; }
 		public MetaLiteNoteSearchableScopeEnum NoteSearchableScope { get; set; }
 		public decimal MaxFileSize { get; set; }
+		public MetaLiteFederationEnum Federation { get; set; }
 		public override string ToString()
 		{
 			return JsonSerializer.Serialize(this, Config.JsonSerializerOptions);

@@ -36,6 +36,20 @@ namespace Misharp.Controls
 			return result;
 		}
 
+		public async Task<Response<UserLiteModel>> Invalidate(string userId)
+		{
+			var param = new Dictionary<string, object?>
+			{
+				{ "userId", userId },
+			};
+			var result = await _app.Request<UserLiteModel>(
+				"following/invalidate", 
+				param, 
+				needToken: true
+			);
+			return result;
+		}
+
 		public async Task<Response<UserLiteModel>> Update(string userId,FollowingUpdatePropertiesNotifyEnum notify,bool withReplies)
 		{
 			var param = new Dictionary<string, object?>
@@ -80,20 +94,6 @@ namespace Misharp.Controls
 			[EnumMember(Value = "none")]
 			None,
 		}
-		public async Task<Response<UserLiteModel>> Invalidate(string userId)
-		{
-			var param = new Dictionary<string, object?>
-			{
-				{ "userId", userId },
-			};
-			var result = await _app.Request<UserLiteModel>(
-				"following/invalidate", 
-				param, 
-				needToken: true
-			);
-			return result;
-		}
-
 		public readonly Following.RequestsApi RequestsApi;
 		public FollowingApi(App app)
 		{
@@ -140,7 +140,7 @@ namespace Misharp.Controls.Following
 			return result;
 		}
 
-		public async Task<Response<List<FollowingListItemsModel>>> List(string? sinceId = null,string? untilId = null,int limit = 10)
+		public async Task<Response<List<PostListItemsModel>>> List(string? sinceId = null,string? untilId = null,int limit = 10)
 		{
 			var param = new Dictionary<string, object?>
 			{
@@ -148,7 +148,7 @@ namespace Misharp.Controls.Following
 				{ "untilId", untilId },
 				{ "limit", limit },
 			};
-			var result = await _app.Request<List<FollowingListItemsModel>>(
+			var result = await _app.Request<List<PostListItemsModel>>(
 				"following/requests/list", 
 				param, 
 				needToken: true
@@ -156,41 +156,13 @@ namespace Misharp.Controls.Following
 			return result;
 		}
 
-		public interface IFollowingListItemsModel
+		public interface IPostListItemsModel
 		{
 			public string Id { get; set; }
 			public UserLiteModel Follower { get; set; }
 			public UserLiteModel Followee { get; set; }
 		}
-		public class FollowingListItemsModel: IFollowingListItemsModel
-		{
-			public string Id { get; set; }
-			public UserLiteModel Follower { get; set; }
-			public UserLiteModel Followee { get; set; }
-		}
-		public async Task<Response<List<FollowingSentItemsModel>>> Sent(string? sinceId = null,string? untilId = null,int limit = 10)
-		{
-			var param = new Dictionary<string, object?>
-			{
-				{ "sinceId", sinceId },
-				{ "untilId", untilId },
-				{ "limit", limit },
-			};
-			var result = await _app.Request<List<FollowingSentItemsModel>>(
-				"following/requests/sent", 
-				param, 
-				needToken: true
-			);
-			return result;
-		}
-
-		public interface IFollowingSentItemsModel
-		{
-			public string Id { get; set; }
-			public UserLiteModel Follower { get; set; }
-			public UserLiteModel Followee { get; set; }
-		}
-		public class FollowingSentItemsModel: IFollowingSentItemsModel
+		public class PostListItemsModel: IPostListItemsModel
 		{
 			public string Id { get; set; }
 			public UserLiteModel Follower { get; set; }
@@ -211,5 +183,33 @@ namespace Misharp.Controls.Following
 			return result;
 		}
 
+		public async Task<Response<List<PostSentItemsModel>>> Sent(string? sinceId = null,string? untilId = null,int limit = 10)
+		{
+			var param = new Dictionary<string, object?>
+			{
+				{ "sinceId", sinceId },
+				{ "untilId", untilId },
+				{ "limit", limit },
+			};
+			var result = await _app.Request<List<PostSentItemsModel>>(
+				"following/requests/sent", 
+				param, 
+				needToken: true
+			);
+			return result;
+		}
+
+		public interface IPostSentItemsModel
+		{
+			public string Id { get; set; }
+			public UserLiteModel Follower { get; set; }
+			public UserLiteModel Followee { get; set; }
+		}
+		public class PostSentItemsModel: IPostSentItemsModel
+		{
+			public string Id { get; set; }
+			public UserLiteModel Follower { get; set; }
+			public UserLiteModel Followee { get; set; }
+		}
 	}
 }

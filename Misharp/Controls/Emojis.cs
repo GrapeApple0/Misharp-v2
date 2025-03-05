@@ -7,37 +7,37 @@ namespace Misharp.Controls
 	public class EmojisApi
 	{
 		private readonly App _app;
-		public async Task<Response<EmojisEmojisGetModel>> EmojisGet()
+		public async Task<Response<GetEmojisGetModel>> EmojisGet()
 		{
-			var result = await _app.Request<EmojisEmojisGetModel>(
+			var result = await _app.Request<GetEmojisGetModel>(
 				"emojis", 
 				needToken: false
 			);
 			return result;
 		}
 
-		public interface IEmojisEmojisGetModel
+		public interface IGetEmojisGetModel
 		{
 			public List<EmojiSimpleModel> Emojis { get; set; }
 		}
-		public class EmojisEmojisGetModel: IEmojisEmojisGetModel
+		public class GetEmojisGetModel: IGetEmojisGetModel
 		{
 			public List<EmojiSimpleModel> Emojis { get; set; }
 		}
-		public async Task<Response<EmojisEmojisModel>> Emojis()
+		public async Task<Response<PostEmojisModel>> Emojis()
 		{
-			var result = await _app.Request<EmojisEmojisModel>(
+			var result = await _app.Request<PostEmojisModel>(
 				"emojis", 
 				needToken: false
 			);
 			return result;
 		}
 
-		public interface IEmojisEmojisModel
+		public interface IPostEmojisModel
 		{
 			public List<EmojiSimpleModel> Emojis { get; set; }
 		}
-		public class EmojisEmojisModel: IEmojisEmojisModel
+		public class PostEmojisModel: IPostEmojisModel
 		{
 			public List<EmojiSimpleModel> Emojis { get; set; }
 		}

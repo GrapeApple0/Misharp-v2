@@ -7,16 +7,16 @@ namespace Misharp.Controls
 	public class StatsApi
 	{
 		private readonly App _app;
-		public async Task<Response<StatsStatsModel>> Stats()
+		public async Task<Response<PostStatsModel>> Stats()
 		{
-			var result = await _app.Request<StatsStatsModel>(
+			var result = await _app.Request<PostStatsModel>(
 				"stats", 
 				needToken: false
 			);
 			return result;
 		}
 
-		public interface IStatsStatsModel
+		public interface IPostStatsModel
 		{
 			public decimal NotesCount { get; set; }
 			public decimal OriginalNotesCount { get; set; }
@@ -26,7 +26,7 @@ namespace Misharp.Controls
 			public decimal DriveUsageLocal { get; set; }
 			public decimal DriveUsageRemote { get; set; }
 		}
-		public class StatsStatsModel: IStatsStatsModel
+		public class PostStatsModel: IPostStatsModel
 		{
 			public decimal NotesCount { get; set; }
 			public decimal OriginalNotesCount { get; set; }

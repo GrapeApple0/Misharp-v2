@@ -31,6 +31,23 @@ namespace Misharp.Controls
 			return result;
 		}
 
+		public async Task<Response<PostLimitModel>> Limit()
+		{
+			var result = await _app.Request<PostLimitModel>(
+				"invite/limit", 
+				needToken: true
+			);
+			return result;
+		}
+
+		public interface IPostLimitModel
+		{
+			public int? Remaining { get; set; }
+		}
+		public class PostLimitModel: IPostLimitModel
+		{
+			public int? Remaining { get; set; }
+		}
 		public async Task<Response<List<InviteCodeModel>>> List(int limit = 30,string? sinceId = null,string? untilId = null)
 		{
 			var param = new Dictionary<string, object?>
@@ -47,23 +64,6 @@ namespace Misharp.Controls
 			return result;
 		}
 
-		public async Task<Response<InviteLimitModel>> Limit()
-		{
-			var result = await _app.Request<InviteLimitModel>(
-				"invite/limit", 
-				needToken: true
-			);
-			return result;
-		}
-
-		public interface IInviteLimitModel
-		{
-			public int? Remaining { get; set; }
-		}
-		public class InviteLimitModel: IInviteLimitModel
-		{
-			public int? Remaining { get; set; }
-		}
 		public InviteApi(App app)
 		{
 			this._app = app;

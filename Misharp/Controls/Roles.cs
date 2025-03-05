@@ -16,47 +16,6 @@ namespace Misharp.Controls
 			return result;
 		}
 
-		public async Task<Response<RoleModel>> Show(string roleId)
-		{
-			var param = new Dictionary<string, object?>
-			{
-				{ "roleId", roleId },
-			};
-			var result = await _app.Request<RoleModel>(
-				"roles/show", 
-				param, 
-				needToken: false
-			);
-			return result;
-		}
-
-		public async Task<Response<List<RolesUsersItemsModel>>> Users(string roleId,string? sinceId = null,string? untilId = null,int limit = 10)
-		{
-			var param = new Dictionary<string, object?>
-			{
-				{ "roleId", roleId },
-				{ "sinceId", sinceId },
-				{ "untilId", untilId },
-				{ "limit", limit },
-			};
-			var result = await _app.Request<List<RolesUsersItemsModel>>(
-				"roles/users", 
-				param, 
-				needToken: false
-			);
-			return result;
-		}
-
-		public interface IRolesUsersItemsModel
-		{
-			public string Id { get; set; }
-			public UserDetailedModel User { get; set; }
-		}
-		public class RolesUsersItemsModel: IRolesUsersItemsModel
-		{
-			public string Id { get; set; }
-			public UserDetailedModel User { get; set; }
-		}
 		public async Task<Response<List<NoteModel>>> Notes(string roleId,int limit = 10,string? sinceId = null,string? untilId = null,int? sinceDate = null,int? untilDate = null)
 		{
 			var param = new Dictionary<string, object?>
@@ -76,6 +35,47 @@ namespace Misharp.Controls
 			return result;
 		}
 
+		public async Task<Response<RoleModel>> Show(string roleId)
+		{
+			var param = new Dictionary<string, object?>
+			{
+				{ "roleId", roleId },
+			};
+			var result = await _app.Request<RoleModel>(
+				"roles/show", 
+				param, 
+				needToken: false
+			);
+			return result;
+		}
+
+		public async Task<Response<List<PostUsersItemsModel>>> Users(string roleId,string? sinceId = null,string? untilId = null,int limit = 10)
+		{
+			var param = new Dictionary<string, object?>
+			{
+				{ "roleId", roleId },
+				{ "sinceId", sinceId },
+				{ "untilId", untilId },
+				{ "limit", limit },
+			};
+			var result = await _app.Request<List<PostUsersItemsModel>>(
+				"roles/users", 
+				param, 
+				needToken: false
+			);
+			return result;
+		}
+
+		public interface IPostUsersItemsModel
+		{
+			public string Id { get; set; }
+			public UserDetailedModel User { get; set; }
+		}
+		public class PostUsersItemsModel: IPostUsersItemsModel
+		{
+			public string Id { get; set; }
+			public UserDetailedModel User { get; set; }
+		}
 		public RolesApi(App app)
 		{
 			this._app = app;

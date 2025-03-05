@@ -81,6 +81,8 @@ namespace Misharp.Models
 		ExportCompleted,
 		[EnumMember(Value = "login")]
 		Login,
+		[EnumMember(Value = "createToken")]
+		CreateToken,
 		[EnumMember(Value = "app")]
 		App,
 		[EnumMember(Value = "reaction:grouped")]

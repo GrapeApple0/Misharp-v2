@@ -7,43 +7,43 @@ namespace Misharp.Controls
 	public class RetentionApi
 	{
 		private readonly App _app;
-		public async Task<Response<List<RetentionRetentionGetItemsModel>>> RetentionGet()
+		public async Task<Response<List<GetRetentionGetItemsModel>>> RetentionGet()
 		{
-			var result = await _app.Request<List<RetentionRetentionGetItemsModel>>(
+			var result = await _app.Request<List<GetRetentionGetItemsModel>>(
 				"retention", 
 				needToken: false
 			);
 			return result;
 		}
 
-		public interface IRetentionRetentionGetItemsModel
+		public interface IGetRetentionGetItemsModel
 		{
 			public DateTime? CreatedAt { get; set; }
 			public decimal Users { get; set; }
 			public Dictionary<string, decimal> Data { get; set; }
 		}
-		public class RetentionRetentionGetItemsModel: IRetentionRetentionGetItemsModel
+		public class GetRetentionGetItemsModel: IGetRetentionGetItemsModel
 		{
 			public DateTime? CreatedAt { get; set; }
 			public decimal Users { get; set; }
 			public Dictionary<string, decimal> Data { get; set; }
 		}
-		public async Task<Response<List<RetentionRetentionItemsModel>>> Retention()
+		public async Task<Response<List<PostRetentionItemsModel>>> Retention()
 		{
-			var result = await _app.Request<List<RetentionRetentionItemsModel>>(
+			var result = await _app.Request<List<PostRetentionItemsModel>>(
 				"retention", 
 				needToken: false
 			);
 			return result;
 		}
 
-		public interface IRetentionRetentionItemsModel
+		public interface IPostRetentionItemsModel
 		{
 			public DateTime? CreatedAt { get; set; }
 			public decimal Users { get; set; }
 			public Dictionary<string, decimal> Data { get; set; }
 		}
-		public class RetentionRetentionItemsModel: IRetentionRetentionItemsModel
+		public class PostRetentionItemsModel: IPostRetentionItemsModel
 		{
 			public DateTime? CreatedAt { get; set; }
 			public decimal Users { get; set; }

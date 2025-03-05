@@ -26,6 +26,21 @@ namespace Misharp.Controls
 			return result;
 		}
 
+		public async Task<Response<EmptyResponse>> Favorite(string channelId)
+		{
+			var param = new Dictionary<string, object?>
+			{
+				{ "channelId", channelId },
+			};
+			var result = await _app.Request<EmptyResponse>(
+				"channels/favorite", 
+				param, 
+				successStatusCode: System.Net.HttpStatusCode.NoContent, 
+				needToken: true
+			);
+			return result;
+		}
+
 		public async Task<Response<List<ChannelModel>>> Featured()
 		{
 			var result = await _app.Request<List<ChannelModel>>(
@@ -66,6 +81,15 @@ namespace Misharp.Controls
 			return result;
 		}
 
+		public async Task<Response<List<ChannelModel>>> MyFavorites()
+		{
+			var result = await _app.Request<List<ChannelModel>>(
+				"channels/my-favorites", 
+				needToken: true
+			);
+			return result;
+		}
+
 		public async Task<Response<List<ChannelModel>>> Owned(string? sinceId = null,string? untilId = null,int limit = 5)
 		{
 			var param = new Dictionary<string, object?>
@@ -82,6 +106,30 @@ namespace Misharp.Controls
 			return result;
 		}
 
+		public async Task<Response<List<ChannelModel>>> Search(string query,ChannelsSearchPropertiesTypeEnum type = ChannelsSearchPropertiesTypeEnum.NameAndDescription,string? sinceId = null,string? untilId = null,int limit = 5)
+		{
+			var param = new Dictionary<string, object?>
+			{
+				{ "query", query },
+				{ "type", type },
+				{ "sinceId", sinceId },
+				{ "untilId", untilId },
+				{ "limit", limit },
+			};
+			var result = await _app.Request<List<ChannelModel>>(
+				"channels/search", 
+				param, 
+				needToken: false
+			);
+			return result;
+		}
+
+		public enum ChannelsSearchPropertiesTypeEnum {
+			[EnumMember(Value = "nameAndDescription")]
+			NameAndDescription,
+			[EnumMember(Value = "nameOnly")]
+			NameOnly,
+		}
 		public async Task<Response<ChannelModel>> Show(string channelId)
 		{
 			var param = new Dictionary<string, object?>
@@ -112,6 +160,21 @@ namespace Misharp.Controls
 				"channels/timeline", 
 				param, 
 				needToken: false
+			);
+			return result;
+		}
+
+		public async Task<Response<EmptyResponse>> Unfavorite(string channelId)
+		{
+			var param = new Dictionary<string, object?>
+			{
+				{ "channelId", channelId },
+			};
+			var result = await _app.Request<EmptyResponse>(
+				"channels/unfavorite", 
+				param, 
+				successStatusCode: System.Net.HttpStatusCode.NoContent, 
+				needToken: true
 			);
 			return result;
 		}
@@ -153,69 +216,6 @@ namespace Misharp.Controls
 			return result;
 		}
 
-		public async Task<Response<EmptyResponse>> Favorite(string channelId)
-		{
-			var param = new Dictionary<string, object?>
-			{
-				{ "channelId", channelId },
-			};
-			var result = await _app.Request<EmptyResponse>(
-				"channels/favorite", 
-				param, 
-				successStatusCode: System.Net.HttpStatusCode.NoContent, 
-				needToken: true
-			);
-			return result;
-		}
-
-		public async Task<Response<EmptyResponse>> Unfavorite(string channelId)
-		{
-			var param = new Dictionary<string, object?>
-			{
-				{ "channelId", channelId },
-			};
-			var result = await _app.Request<EmptyResponse>(
-				"channels/unfavorite", 
-				param, 
-				successStatusCode: System.Net.HttpStatusCode.NoContent, 
-				needToken: true
-			);
-			return result;
-		}
-
-		public async Task<Response<List<ChannelModel>>> MyFavorites()
-		{
-			var result = await _app.Request<List<ChannelModel>>(
-				"channels/my-favorites", 
-				needToken: true
-			);
-			return result;
-		}
-
-		public async Task<Response<List<ChannelModel>>> Search(string query,ChannelsSearchPropertiesTypeEnum type = ChannelsSearchPropertiesTypeEnum.NameAndDescription,string? sinceId = null,string? untilId = null,int limit = 5)
-		{
-			var param = new Dictionary<string, object?>
-			{
-				{ "query", query },
-				{ "type", type },
-				{ "sinceId", sinceId },
-				{ "untilId", untilId },
-				{ "limit", limit },
-			};
-			var result = await _app.Request<List<ChannelModel>>(
-				"channels/search", 
-				param, 
-				needToken: false
-			);
-			return result;
-		}
-
-		public enum ChannelsSearchPropertiesTypeEnum {
-			[EnumMember(Value = "nameAndDescription")]
-			NameAndDescription,
-			[EnumMember(Value = "nameOnly")]
-			NameOnly,
-		}
 		public ChannelsApi(App app)
 		{
 			this._app = app;

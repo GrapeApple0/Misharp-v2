@@ -7,13 +7,13 @@ namespace Misharp.Controls
 	public class UsernameApi
 	{
 		private readonly App _app;
-		public async Task<Response<UsernameAvailableModel>> Available(string username)
+		public async Task<Response<PostAvailableModel>> Available(string username)
 		{
 			var param = new Dictionary<string, object?>
 			{
 				{ "username", username },
 			};
-			var result = await _app.Request<UsernameAvailableModel>(
+			var result = await _app.Request<PostAvailableModel>(
 				"username/available", 
 				param, 
 				needToken: false
@@ -21,11 +21,11 @@ namespace Misharp.Controls
 			return result;
 		}
 
-		public interface IUsernameAvailableModel
+		public interface IPostAvailableModel
 		{
 			public bool Available { get; set; }
 		}
-		public class UsernameAvailableModel: IUsernameAvailableModel
+		public class PostAvailableModel: IPostAvailableModel
 		{
 			public bool Available { get; set; }
 		}

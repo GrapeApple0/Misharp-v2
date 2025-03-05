@@ -81,43 +81,43 @@ namespace Misharp.Controls
 			return result;
 		}
 
-		public async Task<Response<List<HashtagsTrendGetItemsModel>>> TrendGet()
+		public async Task<Response<List<GetTrendGetItemsModel>>> TrendGet()
 		{
-			var result = await _app.Request<List<HashtagsTrendGetItemsModel>>(
+			var result = await _app.Request<List<GetTrendGetItemsModel>>(
 				"hashtags/trend", 
 				needToken: false
 			);
 			return result;
 		}
 
-		public interface IHashtagsTrendGetItemsModel
+		public interface IGetTrendGetItemsModel
 		{
 			public string Tag { get; set; }
 			public List<decimal> Chart { get; set; }
 			public decimal UsersCount { get; set; }
 		}
-		public class HashtagsTrendGetItemsModel: IHashtagsTrendGetItemsModel
+		public class GetTrendGetItemsModel: IGetTrendGetItemsModel
 		{
 			public string Tag { get; set; }
 			public List<decimal> Chart { get; set; }
 			public decimal UsersCount { get; set; }
 		}
-		public async Task<Response<List<HashtagsTrendItemsModel>>> Trend()
+		public async Task<Response<List<PostTrendItemsModel>>> Trend()
 		{
-			var result = await _app.Request<List<HashtagsTrendItemsModel>>(
+			var result = await _app.Request<List<PostTrendItemsModel>>(
 				"hashtags/trend", 
 				needToken: false
 			);
 			return result;
 		}
 
-		public interface IHashtagsTrendItemsModel
+		public interface IPostTrendItemsModel
 		{
 			public string Tag { get; set; }
 			public List<decimal> Chart { get; set; }
 			public decimal UsersCount { get; set; }
 		}
-		public class HashtagsTrendItemsModel: IHashtagsTrendItemsModel
+		public class PostTrendItemsModel: IPostTrendItemsModel
 		{
 			public string Tag { get; set; }
 			public List<decimal> Chart { get; set; }

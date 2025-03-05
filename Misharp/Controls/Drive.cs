@@ -7,21 +7,21 @@ namespace Misharp.Controls
 	public class DriveApi
 	{
 		private readonly App _app;
-		public async Task<Response<DriveDriveModel>> Drive()
+		public async Task<Response<PostDriveModel>> Drive()
 		{
-			var result = await _app.Request<DriveDriveModel>(
+			var result = await _app.Request<PostDriveModel>(
 				"drive", 
 				needToken: true
 			);
 			return result;
 		}
 
-		public interface IDriveDriveModel
+		public interface IPostDriveModel
 		{
 			public decimal Capacity { get; set; }
 			public decimal Usage { get; set; }
 		}
-		public class DriveDriveModel: IDriveDriveModel
+		public class PostDriveModel: IPostDriveModel
 		{
 			public decimal Capacity { get; set; }
 			public decimal Usage { get; set; }
@@ -163,20 +163,6 @@ namespace Misharp.Controls.Drive
 			return result;
 		}
 
-		public async Task<Response<List<DriveFileModel>>> FindByHash(string md5)
-		{
-			var param = new Dictionary<string, object?>
-			{
-				{ "md5", md5 },
-			};
-			var result = await _app.Request<List<DriveFileModel>>(
-				"drive/files/find-by-hash", 
-				param, 
-				needToken: true
-			);
-			return result;
-		}
-
 		public async Task<Response<List<DriveFileModel>>> Find(string name,string? folderId = null)
 		{
 			var param = new Dictionary<string, object?>
@@ -186,6 +172,20 @@ namespace Misharp.Controls.Drive
 			};
 			var result = await _app.Request<List<DriveFileModel>>(
 				"drive/files/find", 
+				param, 
+				needToken: true
+			);
+			return result;
+		}
+
+		public async Task<Response<List<DriveFileModel>>> FindByHash(string md5)
+		{
+			var param = new Dictionary<string, object?>
+			{
+				{ "md5", md5 },
+			};
+			var result = await _app.Request<List<DriveFileModel>>(
+				"drive/files/find-by-hash", 
 				param, 
 				needToken: true
 			);

@@ -7,16 +7,16 @@ namespace Misharp.Controls
 	public class GetAvatarDecorationsApi
 	{
 		private readonly App _app;
-		public async Task<Response<List<GetAvatarDecorationsGetAvatarDecorationsItemsModel>>> GetAvatarDecorations()
+		public async Task<Response<List<PostGetAvatarDecorationsItemsModel>>> GetAvatarDecorations()
 		{
-			var result = await _app.Request<List<GetAvatarDecorationsGetAvatarDecorationsItemsModel>>(
+			var result = await _app.Request<List<PostGetAvatarDecorationsItemsModel>>(
 				"get-avatar-decorations", 
 				needToken: false
 			);
 			return result;
 		}
 
-		public interface IGetAvatarDecorationsGetAvatarDecorationsItemsModel
+		public interface IPostGetAvatarDecorationsItemsModel
 		{
 			public string Id { get; set; }
 			public string Name { get; set; }
@@ -24,7 +24,7 @@ namespace Misharp.Controls
 			public string Url { get; set; }
 			public List<string> RoleIdsThatCanBeUsedThisDecoration { get; set; }
 		}
-		public class GetAvatarDecorationsGetAvatarDecorationsItemsModel: IGetAvatarDecorationsGetAvatarDecorationsItemsModel
+		public class PostGetAvatarDecorationsItemsModel: IPostGetAvatarDecorationsItemsModel
 		{
 			public string Id { get; set; }
 			public string Name { get; set; }

@@ -7,60 +7,7 @@ namespace Misharp.Controls
 	public class SwApi
 	{
 		private readonly App _app;
-		public async Task<Response<SwShowRegistrationModel>> ShowRegistration(string endpoint)
-		{
-			var param = new Dictionary<string, object?>
-			{
-				{ "endpoint", endpoint },
-			};
-			var result = await _app.Request<SwShowRegistrationModel>(
-				"sw/show-registration", 
-				param, 
-				needToken: true
-			);
-			return result;
-		}
-
-		public interface ISwShowRegistrationModel
-		{
-			public string UserId { get; set; }
-			public string Endpoint { get; set; }
-			public bool SendReadMessage { get; set; }
-		}
-		public class SwShowRegistrationModel: ISwShowRegistrationModel
-		{
-			public string UserId { get; set; }
-			public string Endpoint { get; set; }
-			public bool SendReadMessage { get; set; }
-		}
-		public async Task<Response<SwUpdateRegistrationModel>> UpdateRegistration(string endpoint,bool sendReadMessage)
-		{
-			var param = new Dictionary<string, object?>
-			{
-				{ "endpoint", endpoint },
-				{ "sendReadMessage", sendReadMessage },
-			};
-			var result = await _app.Request<SwUpdateRegistrationModel>(
-				"sw/update-registration", 
-				param, 
-				needToken: true
-			);
-			return result;
-		}
-
-		public interface ISwUpdateRegistrationModel
-		{
-			public string UserId { get; set; }
-			public string Endpoint { get; set; }
-			public bool SendReadMessage { get; set; }
-		}
-		public class SwUpdateRegistrationModel: ISwUpdateRegistrationModel
-		{
-			public string UserId { get; set; }
-			public string Endpoint { get; set; }
-			public bool SendReadMessage { get; set; }
-		}
-		public async Task<Response<SwRegisterModel>> Register(string endpoint,string auth,string publickey,bool sendReadMessage = false)
+		public async Task<Response<PostRegisterModel>> Register(string endpoint,string auth,string publickey,bool sendReadMessage = false)
 		{
 			var param = new Dictionary<string, object?>
 			{
@@ -69,7 +16,7 @@ namespace Misharp.Controls
 				{ "publickey", publickey },
 				{ "sendReadMessage", sendReadMessage },
 			};
-			var result = await _app.Request<SwRegisterModel>(
+			var result = await _app.Request<PostRegisterModel>(
 				"sw/register", 
 				param, 
 				needToken: true
@@ -77,24 +24,50 @@ namespace Misharp.Controls
 			return result;
 		}
 
-		public enum SwRegisterStateEnum {
+		public enum PostRegisterStateEnum {
 			[EnumMember(Value = "already-subscribed")]
 			AlreadySubscribed,
 			[EnumMember(Value = "subscribed")]
 			Subscribed,
 		}
-		public interface ISwRegisterModel
+		public interface IPostRegisterModel
 		{
-			public SwRegisterStateEnum State { get; set; }
+			public PostRegisterStateEnum State { get; set; }
 			public string? Key { get; set; }
 			public string UserId { get; set; }
 			public string Endpoint { get; set; }
 			public bool SendReadMessage { get; set; }
 		}
-		public class SwRegisterModel: ISwRegisterModel
+		public class PostRegisterModel: IPostRegisterModel
 		{
-			public SwRegisterStateEnum State { get; set; }
+			public PostRegisterStateEnum State { get; set; }
 			public string? Key { get; set; }
+			public string UserId { get; set; }
+			public string Endpoint { get; set; }
+			public bool SendReadMessage { get; set; }
+		}
+		public async Task<Response<PostShowRegistrationModel>> ShowRegistration(string endpoint)
+		{
+			var param = new Dictionary<string, object?>
+			{
+				{ "endpoint", endpoint },
+			};
+			var result = await _app.Request<PostShowRegistrationModel>(
+				"sw/show-registration", 
+				param, 
+				needToken: true
+			);
+			return result;
+		}
+
+		public interface IPostShowRegistrationModel
+		{
+			public string UserId { get; set; }
+			public string Endpoint { get; set; }
+			public bool SendReadMessage { get; set; }
+		}
+		public class PostShowRegistrationModel: IPostShowRegistrationModel
+		{
 			public string UserId { get; set; }
 			public string Endpoint { get; set; }
 			public bool SendReadMessage { get; set; }
@@ -114,6 +87,33 @@ namespace Misharp.Controls
 			return result;
 		}
 
+		public async Task<Response<PostUpdateRegistrationModel>> UpdateRegistration(string endpoint,bool sendReadMessage)
+		{
+			var param = new Dictionary<string, object?>
+			{
+				{ "endpoint", endpoint },
+				{ "sendReadMessage", sendReadMessage },
+			};
+			var result = await _app.Request<PostUpdateRegistrationModel>(
+				"sw/update-registration", 
+				param, 
+				needToken: true
+			);
+			return result;
+		}
+
+		public interface IPostUpdateRegistrationModel
+		{
+			public string UserId { get; set; }
+			public string Endpoint { get; set; }
+			public bool SendReadMessage { get; set; }
+		}
+		public class PostUpdateRegistrationModel: IPostUpdateRegistrationModel
+		{
+			public string UserId { get; set; }
+			public string Endpoint { get; set; }
+			public bool SendReadMessage { get; set; }
+		}
 		public SwApi(App app)
 		{
 			this._app = app;

@@ -39,6 +39,7 @@ namespace Misharp.Models
 		public bool EnableTurnstile { get; set; }
 		public string? TurnstileSiteKey { get; set; }
 		public bool EnableTestcaptcha { get; set; }
+		public string? GoogleAnalyticsMeasurementId { get; set; }
 		public string? SwPublickey { get; set; }
 		public string MascotImageUrl { get; set; }
 		public string? BannerUrl { get; set; }
@@ -64,6 +65,7 @@ namespace Misharp.Models
 		public RolePoliciesModel Policies { get; set; }
 		public MetaLiteNoteSearchableScopeEnum NoteSearchableScope { get; set; }
 		public decimal MaxFileSize { get; set; }
+		public MetaLiteFederationEnum Federation { get; set; }
 		public MetaDetailedOnlyFeaturesModel Features { get; set; }
 		public string? ProxyAccountName { get; set; }
 		public bool RequireSetup { get; set; }
@@ -103,6 +105,7 @@ namespace Misharp.Models
 				EnableTurnstile = metaDetailed.EnableTurnstile,
 				TurnstileSiteKey = metaDetailed.TurnstileSiteKey,
 				EnableTestcaptcha = metaDetailed.EnableTestcaptcha,
+				GoogleAnalyticsMeasurementId = metaDetailed.GoogleAnalyticsMeasurementId,
 				SwPublickey = metaDetailed.SwPublickey,
 				MascotImageUrl = metaDetailed.MascotImageUrl,
 				BannerUrl = metaDetailed.BannerUrl,
@@ -128,6 +131,7 @@ namespace Misharp.Models
 				Policies = metaDetailed.Policies,
 				NoteSearchableScope = metaDetailed.NoteSearchableScope,
 				MaxFileSize = metaDetailed.MaxFileSize,
+				Federation = metaDetailed.Federation,
 			};
 		}
 		public static implicit operator MetaDetailedOnlyModel(MetaDetailedModel metaDetailed)

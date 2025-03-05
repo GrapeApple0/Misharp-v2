@@ -7,107 +7,107 @@ namespace Misharp.Controls
 	public class ServerInfoApi
 	{
 		private readonly App _app;
-		public async Task<Response<ServerInfoServerInfoGetModel>> ServerInfoGet()
+		public async Task<Response<GetServerInfoGetModel>> ServerInfoGet()
 		{
-			var result = await _app.Request<ServerInfoServerInfoGetModel>(
+			var result = await _app.Request<GetServerInfoGetModel>(
 				"server-info", 
 				needToken: false
 			);
 			return result;
 		}
 
-		public interface IServerInfoServerInfoGetCpuModel
+		public interface IGetServerInfoGetCpuModel
 		{
 			public string Model { get; set; }
 			public decimal Cores { get; set; }
 		}
-		public class ServerInfoServerInfoGetCpuModel: IServerInfoServerInfoGetCpuModel
+		public class GetServerInfoGetCpuModel: IGetServerInfoGetCpuModel
 		{
 			public string Model { get; set; }
 			public decimal Cores { get; set; }
 		}
-		public interface IServerInfoServerInfoGetMemModel
+		public interface IGetServerInfoGetMemModel
 		{
 			public decimal Total { get; set; }
 		}
-		public class ServerInfoServerInfoGetMemModel: IServerInfoServerInfoGetMemModel
+		public class GetServerInfoGetMemModel: IGetServerInfoGetMemModel
 		{
 			public decimal Total { get; set; }
 		}
-		public interface IServerInfoServerInfoGetFsModel
-		{
-			public decimal Total { get; set; }
-			public decimal Used { get; set; }
-		}
-		public class ServerInfoServerInfoGetFsModel: IServerInfoServerInfoGetFsModel
+		public interface IGetServerInfoGetFsModel
 		{
 			public decimal Total { get; set; }
 			public decimal Used { get; set; }
 		}
-		public interface IServerInfoServerInfoGetModel
+		public class GetServerInfoGetFsModel: IGetServerInfoGetFsModel
+		{
+			public decimal Total { get; set; }
+			public decimal Used { get; set; }
+		}
+		public interface IGetServerInfoGetModel
 		{
 			public string Machine { get; set; }
-			public ServerInfoServerInfoGetCpuModel Cpu { get; set; }
-			public ServerInfoServerInfoGetMemModel Mem { get; set; }
-			public ServerInfoServerInfoGetFsModel Fs { get; set; }
+			public GetServerInfoGetCpuModel Cpu { get; set; }
+			public GetServerInfoGetMemModel Mem { get; set; }
+			public GetServerInfoGetFsModel Fs { get; set; }
 		}
-		public class ServerInfoServerInfoGetModel: IServerInfoServerInfoGetModel
+		public class GetServerInfoGetModel: IGetServerInfoGetModel
 		{
 			public string Machine { get; set; }
-			public ServerInfoServerInfoGetCpuModel Cpu { get; set; }
-			public ServerInfoServerInfoGetMemModel Mem { get; set; }
-			public ServerInfoServerInfoGetFsModel Fs { get; set; }
+			public GetServerInfoGetCpuModel Cpu { get; set; }
+			public GetServerInfoGetMemModel Mem { get; set; }
+			public GetServerInfoGetFsModel Fs { get; set; }
 		}
-		public async Task<Response<ServerInfoServerInfoModel>> ServerInfo()
+		public async Task<Response<PostServerInfoModel>> ServerInfo()
 		{
-			var result = await _app.Request<ServerInfoServerInfoModel>(
+			var result = await _app.Request<PostServerInfoModel>(
 				"server-info", 
 				needToken: false
 			);
 			return result;
 		}
 
-		public interface IServerInfoServerInfoCpuModel
+		public interface IPostServerInfoCpuModel
 		{
 			public string Model { get; set; }
 			public decimal Cores { get; set; }
 		}
-		public class ServerInfoServerInfoCpuModel: IServerInfoServerInfoCpuModel
+		public class PostServerInfoCpuModel: IPostServerInfoCpuModel
 		{
 			public string Model { get; set; }
 			public decimal Cores { get; set; }
 		}
-		public interface IServerInfoServerInfoMemModel
+		public interface IPostServerInfoMemModel
 		{
 			public decimal Total { get; set; }
 		}
-		public class ServerInfoServerInfoMemModel: IServerInfoServerInfoMemModel
+		public class PostServerInfoMemModel: IPostServerInfoMemModel
 		{
 			public decimal Total { get; set; }
 		}
-		public interface IServerInfoServerInfoFsModel
-		{
-			public decimal Total { get; set; }
-			public decimal Used { get; set; }
-		}
-		public class ServerInfoServerInfoFsModel: IServerInfoServerInfoFsModel
+		public interface IPostServerInfoFsModel
 		{
 			public decimal Total { get; set; }
 			public decimal Used { get; set; }
 		}
-		public interface IServerInfoServerInfoModel
+		public class PostServerInfoFsModel: IPostServerInfoFsModel
 		{
-			public string Machine { get; set; }
-			public ServerInfoServerInfoCpuModel Cpu { get; set; }
-			public ServerInfoServerInfoMemModel Mem { get; set; }
-			public ServerInfoServerInfoFsModel Fs { get; set; }
+			public decimal Total { get; set; }
+			public decimal Used { get; set; }
 		}
-		public class ServerInfoServerInfoModel: IServerInfoServerInfoModel
+		public interface IPostServerInfoModel
 		{
 			public string Machine { get; set; }
-			public ServerInfoServerInfoCpuModel Cpu { get; set; }
-			public ServerInfoServerInfoMemModel Mem { get; set; }
-			public ServerInfoServerInfoFsModel Fs { get; set; }
+			public PostServerInfoCpuModel Cpu { get; set; }
+			public PostServerInfoMemModel Mem { get; set; }
+			public PostServerInfoFsModel Fs { get; set; }
+		}
+		public class PostServerInfoModel: IPostServerInfoModel
+		{
+			public string Machine { get; set; }
+			public PostServerInfoCpuModel Cpu { get; set; }
+			public PostServerInfoMemModel Mem { get; set; }
+			public PostServerInfoFsModel Fs { get; set; }
 		}
 		public ServerInfoApi(App app)
 		{

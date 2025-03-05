@@ -39,13 +39,13 @@ namespace Misharp.Controls.Auth
 		{
 			this._app = app;
 		}
-		public async Task<Response<AuthGenerateModel>> Generate(string appSecret)
+		public async Task<Response<PostGenerateModel>> Generate(string appSecret)
 		{
 			var param = new Dictionary<string, object?>
 			{
 				{ "appSecret", appSecret },
 			};
-			var result = await _app.Request<AuthGenerateModel>(
+			var result = await _app.Request<PostGenerateModel>(
 				"auth/session/generate", 
 				param, 
 				needToken: false
@@ -53,23 +53,23 @@ namespace Misharp.Controls.Auth
 			return result;
 		}
 
-		public interface IAuthGenerateModel
+		public interface IPostGenerateModel
 		{
 			public string Token { get; set; }
 			public Uri Url { get; set; }
 		}
-		public class AuthGenerateModel: IAuthGenerateModel
+		public class PostGenerateModel: IPostGenerateModel
 		{
 			public string Token { get; set; }
 			public Uri Url { get; set; }
 		}
-		public async Task<Response<AuthShowModel>> Show(string token)
+		public async Task<Response<PostShowModel>> Show(string token)
 		{
 			var param = new Dictionary<string, object?>
 			{
 				{ "token", token },
 			};
-			var result = await _app.Request<AuthShowModel>(
+			var result = await _app.Request<PostShowModel>(
 				"auth/session/show", 
 				param, 
 				needToken: false
@@ -77,26 +77,26 @@ namespace Misharp.Controls.Auth
 			return result;
 		}
 
-		public interface IAuthShowModel
+		public interface IPostShowModel
 		{
 			public string Id { get; set; }
 			public AppModel App { get; set; }
 			public string Token { get; set; }
 		}
-		public class AuthShowModel: IAuthShowModel
+		public class PostShowModel: IPostShowModel
 		{
 			public string Id { get; set; }
 			public AppModel App { get; set; }
 			public string Token { get; set; }
 		}
-		public async Task<Response<AuthUserkeyModel>> Userkey(string appSecret,string token)
+		public async Task<Response<PostUserkeyModel>> Userkey(string appSecret,string token)
 		{
 			var param = new Dictionary<string, object?>
 			{
 				{ "appSecret", appSecret },
 				{ "token", token },
 			};
-			var result = await _app.Request<AuthUserkeyModel>(
+			var result = await _app.Request<PostUserkeyModel>(
 				"auth/session/userkey", 
 				param, 
 				needToken: false
@@ -104,12 +104,12 @@ namespace Misharp.Controls.Auth
 			return result;
 		}
 
-		public interface IAuthUserkeyModel
+		public interface IPostUserkeyModel
 		{
 			public string AccessToken { get; set; }
 			public UserDetailedNotMeModel User { get; set; }
 		}
-		public class AuthUserkeyModel: IAuthUserkeyModel
+		public class PostUserkeyModel: IPostUserkeyModel
 		{
 			public string AccessToken { get; set; }
 			public UserDetailedNotMeModel User { get; set; }

@@ -54,6 +54,30 @@ namespace Misharp.Controls
 			[EnumMember(Value = "remote")]
 			Remote,
 		}
+		public async Task<Response<List<PostAchievementsItemsModel>>> Achievements(string userId)
+		{
+			var param = new Dictionary<string, object?>
+			{
+				{ "userId", userId },
+			};
+			var result = await _app.Request<List<PostAchievementsItemsModel>>(
+				"users/achievements", 
+				param, 
+				needToken: false
+			);
+			return result;
+		}
+
+		public interface IPostAchievementsItemsModel
+		{
+			public string Name { get; set; }
+			public decimal UnlockedAt { get; set; }
+		}
+		public class PostAchievementsItemsModel: IPostAchievementsItemsModel
+		{
+			public string Name { get; set; }
+			public decimal UnlockedAt { get; set; }
+		}
 		public async Task<Response<List<ClipModel>>> Clips(string userId,int limit = 10,string? sinceId = null,string? untilId = null)
 		{
 			var param = new Dictionary<string, object?>
@@ -65,6 +89,55 @@ namespace Misharp.Controls
 			};
 			var result = await _app.Request<List<ClipModel>>(
 				"users/clips", 
+				param, 
+				needToken: false
+			);
+			return result;
+		}
+
+		public async Task<Response<List<NoteModel>>> FeaturedNotesGet(string userId,int limit = 10,string? untilId = null)
+		{
+			var param = new Dictionary<string, object?>
+			{
+				{ "limit", limit },
+				{ "untilId", untilId },
+				{ "userId", userId },
+			};
+			var result = await _app.Request<List<NoteModel>>(
+				"users/featured-notes", 
+				param, 
+				needToken: false
+			);
+			return result;
+		}
+
+		public async Task<Response<List<NoteModel>>> FeaturedNotes(string userId,int limit = 10,string? untilId = null)
+		{
+			var param = new Dictionary<string, object?>
+			{
+				{ "limit", limit },
+				{ "untilId", untilId },
+				{ "userId", userId },
+			};
+			var result = await _app.Request<List<NoteModel>>(
+				"users/featured-notes", 
+				param, 
+				needToken: false
+			);
+			return result;
+		}
+
+		public async Task<Response<List<FlashModel>>> Flashs(string userId,int limit = 10,string? sinceId = null,string? untilId = null)
+		{
+			var param = new Dictionary<string, object?>
+			{
+				{ "userId", userId },
+				{ "limit", limit },
+				{ "sinceId", sinceId },
+				{ "untilId", untilId },
+			};
+			var result = await _app.Request<List<FlashModel>>(
+				"users/flashs", 
 				param, 
 				needToken: false
 			);
@@ -110,14 +183,14 @@ namespace Misharp.Controls
 			return result;
 		}
 
-		public async Task<Response<List<UsersGetFrequentlyRepliedUsersItemsModel>>> GetFrequentlyRepliedUsers(string userId,int limit = 10)
+		public async Task<Response<List<PostGetFrequentlyRepliedUsersItemsModel>>> GetFrequentlyRepliedUsers(string userId,int limit = 10)
 		{
 			var param = new Dictionary<string, object?>
 			{
 				{ "userId", userId },
 				{ "limit", limit },
 			};
-			var result = await _app.Request<List<UsersGetFrequentlyRepliedUsersItemsModel>>(
+			var result = await _app.Request<List<PostGetFrequentlyRepliedUsersItemsModel>>(
 				"users/get-frequently-replied-users", 
 				param, 
 				needToken: false
@@ -125,48 +198,16 @@ namespace Misharp.Controls
 			return result;
 		}
 
-		public interface IUsersGetFrequentlyRepliedUsersItemsModel
+		public interface IPostGetFrequentlyRepliedUsersItemsModel
 		{
 			public UserDetailedModel User { get; set; }
 			public decimal Weight { get; set; }
 		}
-		public class UsersGetFrequentlyRepliedUsersItemsModel: IUsersGetFrequentlyRepliedUsersItemsModel
+		public class PostGetFrequentlyRepliedUsersItemsModel: IPostGetFrequentlyRepliedUsersItemsModel
 		{
 			public UserDetailedModel User { get; set; }
 			public decimal Weight { get; set; }
 		}
-		public async Task<Response<List<NoteModel>>> FeaturedNotesGet(string userId,int limit = 10,string? untilId = null)
-		{
-			var param = new Dictionary<string, object?>
-			{
-				{ "limit", limit },
-				{ "untilId", untilId },
-				{ "userId", userId },
-			};
-			var result = await _app.Request<List<NoteModel>>(
-				"users/featured-notes", 
-				param, 
-				needToken: false
-			);
-			return result;
-		}
-
-		public async Task<Response<List<NoteModel>>> FeaturedNotes(string userId,int limit = 10,string? untilId = null)
-		{
-			var param = new Dictionary<string, object?>
-			{
-				{ "limit", limit },
-				{ "untilId", untilId },
-				{ "userId", userId },
-			};
-			var result = await _app.Request<List<NoteModel>>(
-				"users/featured-notes", 
-				param, 
-				needToken: false
-			);
-			return result;
-		}
-
 		public async Task<Response<List<NoteModel>>> Notes(string userId,bool withReplies = false,bool withRenotes = true,bool withChannelNotes = false,int limit = 10,string? sinceId = null,string? untilId = null,int? sinceDate = null,int? untilDate = null,bool allowPartial = false,bool withFiles = false)
 		{
 			var param = new Dictionary<string, object?>
@@ -202,23 +243,6 @@ namespace Misharp.Controls
 			};
 			var result = await _app.Request<List<PageModel>>(
 				"users/pages", 
-				param, 
-				needToken: false
-			);
-			return result;
-		}
-
-		public async Task<Response<List<FlashModel>>> Flashs(string userId,int limit = 10,string? sinceId = null,string? untilId = null)
-		{
-			var param = new Dictionary<string, object?>
-			{
-				{ "userId", userId },
-				{ "limit", limit },
-				{ "sinceId", sinceId },
-				{ "untilId", untilId },
-			};
-			var result = await _app.Request<List<FlashModel>>(
-				"users/flashs", 
 				param, 
 				needToken: false
 			);
@@ -289,23 +313,6 @@ namespace Misharp.Controls
 			return result;
 		}
 
-		public async Task<Response<List<UserModel>>> SearchByUsernameAndHost(int limit = 10,bool detail = true,string? username = null,string? host = null)
-		{
-			var param = new Dictionary<string, object?>
-			{
-				{ "limit", limit },
-				{ "detail", detail },
-				{ "username", username },
-				{ "host", host },
-			};
-			var result = await _app.Request<List<UserModel>>(
-				"users/search-by-username-and-host", 
-				param, 
-				needToken: false
-			);
-			return result;
-		}
-
 		public async Task<Response<List<UserModel>>> Search(string query,int offset = 0,int limit = 10,UsersSearchPropertiesOriginEnum origin = UsersSearchPropertiesOriginEnum.Combined,bool detail = true)
 		{
 			var param = new Dictionary<string, object?>
@@ -332,6 +339,23 @@ namespace Misharp.Controls
 			[EnumMember(Value = "combined")]
 			Combined,
 		}
+		public async Task<Response<List<UserModel>>> SearchByUsernameAndHost(int limit = 10,bool detail = true,string? username = null,string? host = null)
+		{
+			var param = new Dictionary<string, object?>
+			{
+				{ "limit", limit },
+				{ "detail", detail },
+				{ "username", username },
+				{ "host", host },
+			};
+			var result = await _app.Request<List<UserModel>>(
+				"users/search-by-username-and-host", 
+				param, 
+				needToken: false
+			);
+			return result;
+		}
+
 		public async Task<Response<UserDetailedModel>> Show(string userId,string username,List<string>? userIds = null,string? host = null)
 		{
 			var param = new Dictionary<string, object?>
@@ -349,30 +373,6 @@ namespace Misharp.Controls
 			return result;
 		}
 
-		public async Task<Response<List<UsersAchievementsItemsModel>>> Achievements(string userId)
-		{
-			var param = new Dictionary<string, object?>
-			{
-				{ "userId", userId },
-			};
-			var result = await _app.Request<List<UsersAchievementsItemsModel>>(
-				"users/achievements", 
-				param, 
-				needToken: false
-			);
-			return result;
-		}
-
-		public interface IUsersAchievementsItemsModel
-		{
-			public string Name { get; set; }
-			public decimal UnlockedAt { get; set; }
-		}
-		public class UsersAchievementsItemsModel: IUsersAchievementsItemsModel
-		{
-			public string Name { get; set; }
-			public decimal UnlockedAt { get; set; }
-		}
 		public async Task<Response<EmptyResponse>> UpdateMemo(string userId,string? memo = null)
 		{
 			var param = new Dictionary<string, object?>
@@ -450,6 +450,21 @@ namespace Misharp.Controls.Users
 			return result;
 		}
 
+		public async Task<Response<UserListModel>> CreateFromPublic(string name,string listId)
+		{
+			var param = new Dictionary<string, object?>
+			{
+				{ "name", name },
+				{ "listId", listId },
+			};
+			var result = await _app.Request<UserListModel>(
+				"users/lists/create-from-public", 
+				param, 
+				needToken: true
+			);
+			return result;
+		}
+
 		public async Task<Response<EmptyResponse>> Delete(string listId)
 		{
 			var param = new Dictionary<string, object?>
@@ -465,6 +480,55 @@ namespace Misharp.Controls.Users
 			return result;
 		}
 
+		public async Task<Response<EmptyResponse>> Favorite(string listId)
+		{
+			var param = new Dictionary<string, object?>
+			{
+				{ "listId", listId },
+			};
+			var result = await _app.Request<EmptyResponse>(
+				"users/lists/favorite", 
+				param, 
+				successStatusCode: System.Net.HttpStatusCode.NoContent, 
+				needToken: true
+			);
+			return result;
+		}
+
+		public async Task<Response<List<PostGetMembershipsItemsModel>>> GetMemberships(string listId,bool forPublic = false,int limit = 30,string? sinceId = null,string? untilId = null)
+		{
+			var param = new Dictionary<string, object?>
+			{
+				{ "listId", listId },
+				{ "forPublic", forPublic },
+				{ "limit", limit },
+				{ "sinceId", sinceId },
+				{ "untilId", untilId },
+			};
+			var result = await _app.Request<List<PostGetMembershipsItemsModel>>(
+				"users/lists/get-memberships", 
+				param, 
+				needToken: false
+			);
+			return result;
+		}
+
+		public interface IPostGetMembershipsItemsModel
+		{
+			public string Id { get; set; }
+			public DateTime? CreatedAt { get; set; }
+			public string UserId { get; set; }
+			public UserLiteModel User { get; set; }
+			public bool WithReplies { get; set; }
+		}
+		public class PostGetMembershipsItemsModel: IPostGetMembershipsItemsModel
+		{
+			public string Id { get; set; }
+			public DateTime? CreatedAt { get; set; }
+			public string UserId { get; set; }
+			public UserLiteModel User { get; set; }
+			public bool WithReplies { get; set; }
+		}
 		public async Task<Response<List<UserListModel>>> List(string userId)
 		{
 			var param = new Dictionary<string, object?>
@@ -526,21 +590,6 @@ namespace Misharp.Controls.Users
 			return result;
 		}
 
-		public async Task<Response<EmptyResponse>> Favorite(string listId)
-		{
-			var param = new Dictionary<string, object?>
-			{
-				{ "listId", listId },
-			};
-			var result = await _app.Request<EmptyResponse>(
-				"users/lists/favorite", 
-				param, 
-				successStatusCode: System.Net.HttpStatusCode.NoContent, 
-				needToken: true
-			);
-			return result;
-		}
-
 		public async Task<Response<EmptyResponse>> Unfavorite(string listId)
 		{
 			var param = new Dictionary<string, object?>
@@ -572,21 +621,6 @@ namespace Misharp.Controls.Users
 			return result;
 		}
 
-		public async Task<Response<UserListModel>> CreateFromPublic(string name,string listId)
-		{
-			var param = new Dictionary<string, object?>
-			{
-				{ "name", name },
-				{ "listId", listId },
-			};
-			var result = await _app.Request<UserListModel>(
-				"users/lists/create-from-public", 
-				param, 
-				needToken: true
-			);
-			return result;
-		}
-
 		public async Task<Response<EmptyResponse>> UpdateMembership(string listId,string userId,bool withReplies)
 		{
 			var param = new Dictionary<string, object?>
@@ -604,39 +638,5 @@ namespace Misharp.Controls.Users
 			return result;
 		}
 
-		public async Task<Response<List<UsersGetMembershipsItemsModel>>> GetMemberships(string listId,bool forPublic = false,int limit = 30,string? sinceId = null,string? untilId = null)
-		{
-			var param = new Dictionary<string, object?>
-			{
-				{ "listId", listId },
-				{ "forPublic", forPublic },
-				{ "limit", limit },
-				{ "sinceId", sinceId },
-				{ "untilId", untilId },
-			};
-			var result = await _app.Request<List<UsersGetMembershipsItemsModel>>(
-				"users/lists/get-memberships", 
-				param, 
-				needToken: false
-			);
-			return result;
-		}
-
-		public interface IUsersGetMembershipsItemsModel
-		{
-			public string Id { get; set; }
-			public DateTime? CreatedAt { get; set; }
-			public string UserId { get; set; }
-			public UserLiteModel User { get; set; }
-			public bool WithReplies { get; set; }
-		}
-		public class UsersGetMembershipsItemsModel: IUsersGetMembershipsItemsModel
-		{
-			public string Id { get; set; }
-			public DateTime? CreatedAt { get; set; }
-			public string UserId { get; set; }
-			public UserLiteModel User { get; set; }
-			public bool WithReplies { get; set; }
-		}
 	}
 }
